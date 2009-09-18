@@ -1,0 +1,36 @@
+<mtgdecklist style="sideboard">
+  <heading>
+    Mark Glenister
+  </heading>
+  <subhead>
+    Top 8 - 2009 Great Britain Nationals
+  </subhead>
+  <land>
+    <card quantity="4" cardname="Rootbound Crag"/>
+    <card quantity="4" cardname="Fire-Lit Thicket"/>
+    <card quantity="3" cardname="Forest"/>
+    <card quantity="12" cardname="Mountain"/>
+  </land>
+  <creatures>
+    <card quantity="4" cardname="Tattermunge Maniac"/>
+    <card quantity="4" cardname="Figure of Destiny"/>
+    <card quantity="4" cardname="Jund Hackblade"/>
+    <card quantity="4" cardname="Boggart Ram-Gang"/>
+    <card quantity="4" cardname="Bloodbraid Elf"/>
+  </creatures>
+  <spells>
+    <card quantity="4" cardname="Lightning Bolt"/>
+    <card quantity="4" cardname="Volcanic Fallout"/>
+    <card quantity="4" cardname="Flame Javelin"/>
+    <card quantity="3" cardname="Colossal Might"/>
+    <card quantity="2" cardname="Manamorphose"/>
+  </spells>
+  <sideboard>
+    <card quantity="4" cardname="Unwilling Recruit"/>
+    <card quantity="1" cardname="Puncture Blast"/>
+    <card quantity="2" cardname="Everlasting Torment"/>
+    <card quantity="2" cardname="Manabarbs"/>
+    <card quantity="2" cardname="Tarfire"/>
+    <card quantity="4" cardname="Great Sable Stag"/>
+  </sideboard>
+</mtgdecklist>
