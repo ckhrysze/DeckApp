@@ -10,4 +10,15 @@ describe Deck do
   it "should create a new instance given valid attributes" do
     Deck.create!(@valid_attributes)
   end
+
+  it "should allow cards to be added" do
+    deck = Deck.create!({:name => "A Deck"})
+    deck.cards = [
+                  Card.create!({:name => "Card 1"}),
+                  Card.create!({:name => "Card 2"}),
+                  Card.create!({:name => "Card 3"}),
+                  Card.create!({:name => "Card 4"})
+                 ]
+    deck.save.should == true
+  end
 end

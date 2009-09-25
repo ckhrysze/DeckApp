@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090925182934) do
+ActiveRecord::Schema.define(:version => 20090925223634) do
 
   create_table "cards", :force => true do |t|
     t.string   "name"
@@ -17,12 +17,19 @@ ActiveRecord::Schema.define(:version => 20090925182934) do
     t.string   "mtg_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "deck_id"
+  end
+
+  create_table "cards_decks", :id => false, :force => true do |t|
+    t.integer "card_id"
+    t.integer "deck_id"
   end
 
   create_table "decks", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "card_id"
   end
 
 end
