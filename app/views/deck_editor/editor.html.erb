@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <title>Deck Editor</title>
+    <%= stylesheet_link_tag "editor" %> 
+    <%= javascript_include_tag "jquery-1.3.2", "editor" %>
+  </head>
+  <body>
+
+    <table>
+      <tr id="decklist_header">
+        <td>Type</td>
+        <td>Name</td>
+        <td>MtG id</td>
+        <td>&nbsp;</td>
+      </tr>
+  
+      <tr id="land_header">
+        <td colspan="4">Land</td>
+      </tr>
+      <%= render :partial => 'card_entry', :locals => {:type => 'land'} %>
+  
+      <tr id="creature_header">
+        <td colspan="4">Ceatures</td>
+      </tr>
+      <%= render :partial => 'card_entry', :locals => {:type => 'creature'} %>
+  
+      <tr id="spell_header">
+        <td colspan="4">Spells</td>
+      </tr>
+      <%= render :partial => 'card_entry', :locals => {:type => 'spell'} %>
+  
+    </table>
+  </body>
+</html>
