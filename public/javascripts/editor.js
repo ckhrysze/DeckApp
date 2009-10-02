@@ -25,7 +25,7 @@ function addCard(row) {
     name = parsed.name
 
     $(row).before("<tr><td></td><td>"+ count +"</td><td>"+ name +"</td><td></td><td>X</td></tr>")
-    console.log("Sending addition of " + count + " " + name + ", which are type " + type)
+    debug.info("Sending addition of " + count + " " + name + ", which are type " + type)
     $(row).find(".count_entry")[0].value = ""
     $(row).find(".name_entry")[0].value = ""
     $(row).find("input")[0].focus()
