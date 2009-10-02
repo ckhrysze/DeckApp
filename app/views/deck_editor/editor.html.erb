@@ -11,23 +11,25 @@
     <table>
       <tr id="decklist_header">
         <td>Type</td>
+        <td>Count</td>
         <td>Name</td>
         <td>MtG id</td>
         <td>&nbsp;</td>
       </tr>
-  
+      <% cols = 5 %>
+
       <tr id="land_header">
-        <td colspan="4">Land</td>
+        <td colspan="<%=cols%>">Land</td>
       </tr>
       <%= render :partial => 'card_entry', :locals => {:type => 'land'} %>
   
       <tr id="creature_header">
-        <td colspan="4">Ceatures</td>
+        <td colspan="<%=cols%>">Ceatures</td>
       </tr>
       <%= render :partial => 'card_entry', :locals => {:type => 'creature'} %>
   
       <tr id="spell_header">
-        <td colspan="4">Spells</td>
+        <td colspan="<%=cols%>">Spells</td>
       </tr>
       <%= render :partial => 'card_entry', :locals => {:type => 'spell'} %>
   
