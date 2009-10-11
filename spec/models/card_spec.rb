@@ -12,4 +12,11 @@ describe Card do
   it "should create a new instance given valid attributes" do
     Card.create!(@valid_attributes)
   end
+
+  describe "sync" do
+    it "should save synced data" do
+      c = Card.create!({:name => "forest"})
+      c.name.should == "forest"
+    end  
+  end
 end

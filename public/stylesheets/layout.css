@@ -1,0 +1,77 @@
+body {
+  min-width: 750px;         /* 2 x (LC fullwidth + CC padding) + RC fullwidth */
+}
+
+#container {
+  padding-left: 250px;      /* LC fullwidth */
+  padding-right: 290px;     /* RC fullwidth + CC padding */
+}
+
+#container .column {
+  position: relative;
+  float: left;
+}
+
+.col_center {
+  padding: 10px 20px;       /* CC padding */
+  width: 100%;
+}
+
+.col_left {
+  width: 230px;             /* LC width */
+  padding: 0 10px;          /* LC padding */
+  right: 290px;             /* LC fullwidth + CC padding */
+  margin-left: -100%;
+}
+
+.col_right {
+  width: 230px;             /* RC width */
+  padding: 0 10px;          /* RC padding */
+  margin-right: -100%;
+}
+
+#footer {
+  clear: both;
+}
+
+/*** IE 6 (and 7?) Fix ***/
+* html #left {
+  left: 230px;              /* RC fullwidth */
+}
+
+/*** Equal-height Columns ***/
+
+#container {
+  overflow: hidden;
+}
+
+#container .column {
+  padding-bottom: 1001em;     /* X + padding-bottom */
+  margin-bottom: -1000em;     /* X */
+}
+
+/*** Footer Fix ***/
+
+* html body {
+  overflow: hidden;
+}
+
+* html #footer-wrapper {
+  float: left;
+  position: relative;
+  width: 100%;
+  padding-bottom: 10010px;
+  margin-bottom: -10000px;
+}
+
+/*** Just for Looks ***/
+#header, #footer {
+  font-size: large;
+  text-align: center;
+  padding: 0.3em 0;
+}
+
+#container .column {
+  padding-top: 1em;
+  text-align: justify;
+}

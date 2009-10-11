@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-GB">
+  <head>
+    <title>The Perfect 3 Column Liquid Layout: No CSS hacks. SEO friendly. iPhone compatible.</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <meta name="description" content="The Perfect 3 Column Liquid Layout: No CSS hacks. SEO friendly. iPhone compatible." />
+    <meta name="keywords" content="The Perfect 3 Column Liquid Layout: No CSS hacks. SEO friendly. iPhone compatible." />
+    <meta name="robots" content="index, follow" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link href="/stylesheets/reset-fonts.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/layout.css" media="screen" rel="stylesheet" type="text/css" />
+
+  </head>
+  <body>
+	<% cols = 5 %>
+
+    <div id="header">
+      Plain sized text
+      <h2>H2 header</h2>
+    </div>
+    <div class="colmask threecol">
+      <div class="colmid">
+	<div class="colleft">
+	  <div class="col1">
+	    <!-- Column 1 start -->
+        <h3>Card Entry</h3>
+        <input id="card_entry" />
+        <button id="add_card_button" name="add_card">+</button>
+        <div>
+          <p>examples:</p>
+          <ul>
+            <li>island</li>
+            <li>4 llanowar elves</li>
+            <li>x4 shock</li>
+          </ul>
+        </div>
+	    <!-- Column 1 end -->
+	  </div>
+	  <div class="col2">
+	    <!-- Column 2 start -->
+		<h3>Deck List</h3>
+		<table>
+		  <tr id="decklist_header">
+			<td>Type</td>
+			<td>Count</td>
+			<td>Name</td>
+			<td>MtG id</td>
+			<td>&nbsp;</td>
+		  </tr>
+		  <tr id="pending_header">
+			<td colspan="<%=cols%>">Pending</td>
+		  </tr>
+		  <tr id="land_header">
+			<td colspan="<%=cols%>">Lands</td>
+		  </tr>
+		  <tr id="creature_header">
+			<td colspan="<%=cols%>">Creatures</td>
+		  </tr>
+		  <tr id="spell_header">
+			<td colspan="<%=cols%>">Spells</td>
+		  </tr>
+		</table>
+	    <!-- Column 2 end -->
+	  </div>
+	  <div class="col3">
+
+	    <!-- Column 3 start -->
+		<h3>Deck Stats</h3>
+		<p>Coming soon!</p>
+	    <!-- Column 3 end -->
+
+	  </div>
+	</div>
+      </div>
+    </div>
+    <div id="footer">
+      <p>This page uses the <a href="http://matthewjamestaylor.com/blog/perfect-3-column.htm">Perfect 'Holy Grail' 3 Column Liquid Layout</a> by <a href="http://matthewjamestaylor.com">Matthew James Taylor</a>. View more <a href="http://matthewjamestaylor.com/blog/-website-layouts">website layouts</a> and <a href="http://matthewjamestaylor.com/blog/-web-design">web design articles</a>.</p>
+
+    </div>
+
+  </body>
+</html>

@@ -11,7 +11,7 @@ describe Deck do
     Deck.create!(@valid_attributes)
   end
 
-  it "should have cards through maindecks" do
+  it "should have cards through runs" do
     deck = Deck.create!({:name => "A Deck"})
 
     deck.cards = [
@@ -21,19 +21,6 @@ describe Deck do
                   Card.create!({:name => "Card 4"})
                  ]
     deck.save.should == true
-    deck.maindecks.size.should == 4
-  end
-
-  it "should have sideboard_cards through sideboards" do
-    deck = Deck.create!({:name => "A Deck"})
-
-    deck.sideboard_cards = [
-                  Card.create!({:name => "Card 1"}),
-                  Card.create!({:name => "Card 2"}),
-                  Card.create!({:name => "Card 3"}),
-                  Card.create!({:name => "Card 4"})
-                 ]
-    deck.save.should == true
-    deck.sideboards.size.should == 4
+    deck.runs.size.should == 4
   end
 end

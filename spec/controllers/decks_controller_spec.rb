@@ -30,14 +30,6 @@ describe DecksController do
     end
   end
 
-  describe "GET edit" do
-    it "assigns the requested deck as @deck" do
-      Deck.stub!(:find).with("37").and_return(mock_deck)
-      get :edit, :id => "37"
-      assigns[:deck].should equal(mock_deck)
-    end
-  end
-
   describe "POST create" do
 
     describe "with valid params" do

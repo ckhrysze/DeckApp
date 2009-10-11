@@ -9,12 +9,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091002030941) do
+ActiveRecord::Schema.define(:version => 20091002224034) do
 
   create_table "cards", :force => true do |t|
     t.string   "name"
-    t.string   "type"
+    t.string   "cardtype"
     t.string   "mtg_id"
+    t.string   "cc"
+    t.integer  "cmc"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -25,16 +27,11 @@ ActiveRecord::Schema.define(:version => 20091002030941) do
     t.datetime "updated_at"
   end
 
-  create_table "maindecks", :force => true do |t|
+  create_table "runs", :force => true do |t|
     t.integer "card_id"
     t.integer "deck_id"
     t.integer "count"
-  end
-
-  create_table "sideboards", :force => true do |t|
-    t.integer "card_id"
-    t.integer "deck_id"
-    t.integer "count"
+    t.string  "pile"
   end
 
 end
