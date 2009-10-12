@@ -4,12 +4,9 @@ class Run < ActiveRecord::Base
 
   module CardCountExtension
     def card_count
-      load_target unless loaded?
-      puts "Proxy owner #{proxy_owner.inspect}"
-      puts "Proxy reflection #{proxy_reflection.inspect}"
-      puts "Proxy target #{proxy_target.inspect}"
-      puts "Proxy options #{proxy_options.inspect}"
-      0
+      loaded = false
+      load_target
+      proxy_target.map(&:count).sum
     end
   end
 

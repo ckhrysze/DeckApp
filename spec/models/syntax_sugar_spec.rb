@@ -43,12 +43,25 @@ describe "Syntax Sugar" do
 
   it "should find piles from deck" do
     @deck.maindeck.count.should == 6
-    @deck.maindeck.card_count.should == 28
-
     @deck.sideboard.count.should == 3
-    @deck.sideboard.card_count.should == 14
-
     @deck.considering.count.should == 3
+  end
+
+  it "should count piles from deck" do
+    @deck.maindeck.card_count.should == 28
+    @deck.sideboard.card_count.should == 14
+    @deck.considering.card_count.should == 12
+  end
+
+  it "should count maindeck pile" do
+    @deck.maindeck.card_count.should == 28
+  end
+
+  it "should count sideboard pile" do
+    @deck.sideboard.card_count.should == 14
+  end
+
+  it "should count considering pile" do
     @deck.considering.card_count.should == 12
   end
 
