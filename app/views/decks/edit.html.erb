@@ -38,20 +38,29 @@
               <td>Count</td>
               <td>Name</td>
               <td>MtG id</td>
+              <td>CC</td>
+              <td>CMC</td>
               <td>&nbsp;</td>
             </tr>
             <tr id="pending_header">
               <td colspan="<%=cols%>">Pending</td>
             </tr>
+
             <tr id="land_header">
               <td colspan="<%=cols%>">Lands</td>
             </tr>
+            <%= render :partial => "run_rows", :locals => {:runs => @deck.maindeck.lands } %>
+
             <tr id="creature_header">
               <td colspan="<%=cols%>">Creatures</td>
             </tr>
+            <%= render :partial => "run_rows", :locals => {:runs => @deck.maindeck.creatures } %>
+
             <tr id="spell_header">
               <td colspan="<%=cols%>">Spells</td>
             </tr>
+            <%= render :partial => "run_rows", :locals => {:runs => @deck.maindeck.spells } %>
+
           </table>
         </div>
       </div>

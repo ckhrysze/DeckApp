@@ -1,4 +1,5 @@
 class RunsController < ApplicationController
+  layout nil
 
   def index
     @runs = Deck.find(params[:deck_id]).runs
@@ -25,7 +26,15 @@ class RunsController < ApplicationController
     @run.save
 
     respond_to do |format|
-      format.xml  { render :xml => @run }
+      format.xml  { render :xml => @run.to_json( :include => :card ) }
+      format.json  { render :xml => @run.to_json( :include => :card ) }
+    end
+  end
+
+  def show
+    @run = Run.find(params[:id])
+    respond_to do |format|
+      format.xml  { render :xml => @run.to_xml( :include => :card ) }
     end
   end
 

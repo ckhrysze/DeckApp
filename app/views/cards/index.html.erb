@@ -3,14 +3,14 @@
 <table>
   <tr>
     <th>Name</th>
-    <th>Type</th>
+    <th>Cardtype</th>
     <th>Mtg</th>
   </tr>
 
 <% @cards.each do |card| %>
   <tr>
     <td><%=h card.name %></td>
-    <td><%=h card.type %></td>
+    <td><%=h card.cardtype %></td>
     <td><%=h card.mtg_id %></td>
     <td><%= link_to 'Show', card %></td>
     <td><%= link_to 'Edit', edit_card_path(card) %></td>

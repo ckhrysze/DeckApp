@@ -15,6 +15,8 @@ $(document).ready(function() {
     } )
 });
 
+var pendingTracker = 0
+
 function addCard() {
     var entryText = $("#card_entry")[0].value
     parsed = parseInput(entryText)
@@ -23,16 +25,22 @@ function addCard() {
 
     debug.info("Sending addition of " + count + " " + name)
     var deckId = 1
+
+    pendingTracker += 1
+    pendingId = "pending" + pendingTracker
+
     url = "/decks/" + deckId + "/runs"
     $.post(
         url,
         {deck_id: deckId, count: count, card_name: name},
-        onCardAdded,
+        function(data) {
+            onCardAdded(data, pendingId)
+        },
         'json'
     )
     
     $("#pending_header").after(
-        "<tr><td></td><td>"+ count +
+        "<tr id=\"" + pendingId + "\"><td></td><td>"+ count +
         "</td><td>"+ name +
         "</td><td></td><td>X</td></tr>"
     )
@@ -53,6 +61,17 @@ function parseInput(entryText) {
     return {count:countOut, name:nameOut}
 } // End of parseInputs
 
-function onCardAdded(data) {
+function onCardAdded(data, pendingId) {
     debug.info("Card added, return was: " + data)
-} // End of onCardAdded
+    $("#" + pendingId).remove()
+    var runId = "#run" + data.run.id
+    if ($(runId).length == 0) addNewRow(data)
+    else appendRow(runId, data)
+}
+function addNewRow(data) {
+    var cardtype = data.run.card.cardtype
+    debug.info("Card type: " + cardtype)
+}
+function appendRow(runId, data) {
+    $(runId + " td.run_count").html( data.run.count )
+}

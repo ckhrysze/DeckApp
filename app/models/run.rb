@@ -4,8 +4,8 @@ class Run < ActiveRecord::Base
 
   module CardCountExtension
     def card_count
-      loaded = false
-      load_target
+      reset             # to force load_target to load the correct data
+      load_target       # since the proxy_target doesn't eager load
       proxy_target.map(&:count).sum
     end
   end
@@ -14,20 +14,28 @@ class Run < ActiveRecord::Base
   named_scope :sideboard, :conditions => { "pile" => "sideboard" }, :extend => CardCountExtension
   named_scope :considering, :conditions => { "pile" => "considering" }, :extend => CardCountExtension
 
-  named_scope :creature_runs, :joins => :card, :conditions => { "cards.cardtype" => "creature" }
-  named_scope :land_runs, :joins => :card, :conditions => { "cards.cardtype" => "land" }
-  named_scope :spell_runs, :joins => :card, :conditions => { "cards.cardtype" => "spell" }
+  named_scope :lands, :joins => :card, :conditions => { "cards.cardtype" => "land" }
+  named_scope :creatures, :joins => :card, :conditions => { "cards.cardtype" => "creature" }
+  named_scope :spells, :joins => :card, :conditions => { "cards.cardtype" => "spell" }
 
-  def self.creatures
-    Card.by_runs(creature_runs)
+
+  def name
+    card.name
   end
 
-  def self.lands
-    Card.by_runs(land_runs)
+  def cardtype
+    card.cardtype
   end
 
-  def self.spells
-    Card.by_runs(spell_runs)
+  def mtg_id
+    card.mtg_id
+  end  
+
+  def cc
+    card.cc
   end
 
+  def cmc
+    card.cmc
+  end
 end

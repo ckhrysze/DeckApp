@@ -47,6 +47,10 @@ describe "Syntax Sugar" do
     @deck.considering.count.should == 3
   end
 
+  # doing these in one method turned out to catch
+  # a rather interesting error, apparently the
+  # extension in run's named_scopes will only
+  # reload after reset is called
   it "should count piles from deck" do
     @deck.maindeck.card_count.should == 28
     @deck.sideboard.card_count.should == 14
