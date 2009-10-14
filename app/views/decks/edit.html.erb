@@ -9,7 +9,12 @@
   <body>
     <% cols = 5 %>
 
-    <div id="header"></div>
+    <div id="header">
+      <a class="rpxnow" onclick="return false;"
+          href="https://monkeymagic.rpxnow.com/openid/v2/signin?token_url=http://localhost:3000/auth/rpxcallback">
+        Sign In
+      </a>
+    </div>
 
     <div id="container">
 
@@ -45,21 +50,25 @@
             <tr id="pending_header">
               <td colspan="<%=cols%>">Pending</td>
             </tr>
+            <tr id="blank_pending_row" />
 
             <tr id="land_header">
               <td colspan="<%=cols%>">Lands</td>
             </tr>
             <%= render :partial => "run_rows", :locals => {:runs => @deck.maindeck.lands } %>
+            <tr id="blank_land_row" />
 
             <tr id="creature_header">
               <td colspan="<%=cols%>">Creatures</td>
             </tr>
             <%= render :partial => "run_rows", :locals => {:runs => @deck.maindeck.creatures } %>
+            <tr id="blank_creature_row" />
 
             <tr id="spell_header">
               <td colspan="<%=cols%>">Spells</td>
             </tr>
             <%= render :partial => "run_rows", :locals => {:runs => @deck.maindeck.spells } %>
+            <tr id="blank_spell_row" />
 
           </table>
         </div>
@@ -77,5 +86,10 @@
       <div id="footer"></div>
     </div>
 
+    <script src="https://rpxnow.com/openid/v2/widget" type="text/javascript"></script>
+    <script type="text/javascript">
+      RPXNOW.overlay = true;
+      RPXNOW.language_preference = 'en';
+    </script>
   </body>
 </html>

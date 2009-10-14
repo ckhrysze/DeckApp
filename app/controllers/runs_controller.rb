@@ -41,5 +41,6 @@ class RunsController < ApplicationController
   def destroy
     @run = Run.find(params[:id])
     @run.destroy
+    head :ok
   end
 end

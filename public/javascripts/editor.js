@@ -1,6 +1,27 @@
 $(document).ready(function() {
 
+    debug.info(document.location.pathname)
+
     $("#card_entry").focus()
+
+    $("span.delete_run").live("click", function(e){
+        var rowId = $(e.target).parent().parent().attr("id")
+        var runId = rowId.substring(3)
+        debug.info("deleting run " + runId)
+        var currentPath = document.location.pathname
+        var basePath = currentPath.substring(0, currentPath.length-4)
+        var path = basePath + "runs/" + runId
+        $.ajax({
+            type: "DELETE",
+            url: path,
+            success: function(msg){
+                debug.info("run " + runId + " was deleted")
+                $("#" + rowId).remove()
+            }
+        });
+        $("#card_entry").focus()
+        e.stopImmediatePropagation()
+    })
 
     //tab - 0
     //enter = 13
@@ -29,6 +50,8 @@ function addCard() {
     pendingTracker += 1
     pendingId = "pending" + pendingTracker
 
+    createRow("#blank_pending_row", pendingId, count, name)
+
     url = "/decks/" + deckId + "/runs"
     $.post(
         url,
@@ -37,12 +60,6 @@ function addCard() {
             onCardAdded(data, pendingId)
         },
         'json'
-    )
-    
-    $("#pending_header").after(
-        "<tr id=\"" + pendingId + "\"><td></td><td>"+ count +
-        "</td><td>"+ name +
-        "</td><td></td><td>X</td></tr>"
     )
     $("#card_entry").value = ""
     $("#card_entry")[0].value = ""
@@ -62,16 +79,38 @@ function parseInput(entryText) {
 } // End of parseInputs
 
 function onCardAdded(data, pendingId) {
-    debug.info("Card added, return was: " + data)
     $("#" + pendingId).remove()
     var runId = "#run" + data.run.id
     if ($(runId).length == 0) addNewRow(data)
     else appendRow(runId, data)
 }
+
 function addNewRow(data) {
+    var run = data.run
     var cardtype = data.run.card.cardtype
     debug.info("Card type: " + cardtype)
+    var blankRowId = "#blank_" + cardtype + "_row"
+    createRow(blankRowId,
+        "row" + run.id, run.count, run.card.name,
+        run.card.mtg_id, run.card.cc, run.card.cmc)
 }
+
 function appendRow(runId, data) {
     $(runId + " td.run_count").html( data.run.count )
+}
+
+function createRow(slotSelector, rowId, count, name, mtgId, cc, cmc) {
+    if (arguments.length < 7 || cmc == null) cmc = ""
+    if (arguments.length < 6) cc = ""
+    if (arguments.length < 5) mtgId = ""
+
+    $(slotSelector).after(
+        "<tr id=\"" + rowId + "\"><td>" +
+        "</td><td>"+ count +
+        "</td><td>"+ name +
+        "</td><td>"+ mtgId +
+        "</td><td>"+ cc +
+        "</td><td>"+ cmc +
+        "<td><span class='delete_run' href=''>X</span></td></tr>"
+        )
 }

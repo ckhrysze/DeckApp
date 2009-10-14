@@ -18,3 +18,8 @@ td {
   text-align: left;
   padding: 2px;
 }
+
+.delete_run {
+  color: #FF0000;
+  text-decoration: underline;
+}

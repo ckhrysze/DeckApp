@@ -9,7 +9,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.connect 'editor', :controller => 'deck_editor', :action => 'display'
 
-  map.connect ':controller/:action.:format'
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
+  map.connect 'auth/:action', :controller => 'auth'
+
+  # map.connect ':controller/:action.:format'
+  # map.connect ':controller/:action/:id'
+  # map.connect ':controller/:action/:id.:format'
 end
