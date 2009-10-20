@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
     debug.info(document.location.pathname)
+    basepath = document.location.pathname.substring(0, document.location.pathname.length-4)
 
     $("#card_entry").focus()
 
@@ -8,9 +9,7 @@ $(document).ready(function() {
         var rowId = $(e.target).parent().parent().attr("id")
         var runId = rowId.substring(3)
         debug.info("deleting run " + runId)
-        var currentPath = document.location.pathname
-        var basePath = currentPath.substring(0, currentPath.length-4)
-        var path = basePath + "runs/" + runId
+        var path = basepath + "runs/" + runId
         $.ajax({
             type: "DELETE",
             url: path,
@@ -36,6 +35,7 @@ $(document).ready(function() {
     } )
 });
 
+var basepath = ""
 var pendingTracker = 0
 
 function addCard() {
@@ -45,17 +45,16 @@ function addCard() {
     name = parsed.name
 
     debug.info("Sending addition of " + count + " " + name)
-    var deckId = 1
 
     pendingTracker += 1
     pendingId = "pending" + pendingTracker
 
     createRow("#blank_pending_row", pendingId, count, name)
 
-    url = "/decks/" + deckId + "/runs"
+    url = basepath + "runs"
     $.post(
         url,
-        {deck_id: deckId, count: count, card_name: name},
+        {count: count, card_name: name},
         function(data) {
             onCardAdded(data, pendingId)
         },
@@ -88,7 +87,9 @@ function onCardAdded(data, pendingId) {
 function addNewRow(data) {
     var run = data.run
     var cardtype = data.run.card.cardtype
+    if (cardtype == null) cardtype = "unknown"
     debug.info("Card type: " + cardtype)
+
     var blankRowId = "#blank_" + cardtype + "_row"
     createRow(blankRowId,
         "row" + run.id, run.count, run.card.name,
@@ -102,15 +103,43 @@ function appendRow(runId, data) {
 function createRow(slotSelector, rowId, count, name, mtgId, cc, cmc) {
     if (arguments.length < 7 || cmc == null) cmc = ""
     if (arguments.length < 6) cc = ""
-    if (arguments.length < 5) mtgId = ""
+
+    var nameDisplay = name
+    if (arguments.length < 5 || mtgId == null) {
+        mtgId = ""
+    } else {
+        nameDisplay = "<a href=\"http://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=" +
+            mtgId +
+            "\">" +
+            name +
+            "</a>"
+    }
 
     $(slotSelector).after(
         "<tr id=\"" + rowId + "\"><td>" +
         "</td><td>"+ count +
-        "</td><td>"+ name +
+        "</td><td>"+ nameDisplay +
         "</td><td>"+ mtgId +
         "</td><td>"+ cc +
         "</td><td>"+ cmc +
+        "<td><span class='delete_run' href=''>X</span></td></tr>"
+        )
+}
+
+function createPendingRow(slotSelector, rowId, count, name) {
+    $(slotSelector).after(
+        "<tr id=\"" + rowId + "\"><td>" +
+        "</td><td>"+ count +
+        "</td><td>"+ name +
+        "<td><span class='delete_run' href=''>X</span></td></tr>"
+        )
+}
+
+function createUnknownRow(slotSelector, rowId, count, name) {
+    $(slotSelector).after(
+        "<tr id=\"" + rowId + "\"><td>" +
+        "</td><td>"+ count +
+        "</td><td>"+ name +
         "<td><span class='delete_run' href=''>X</span></td></tr>"
         )
 }

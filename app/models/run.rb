@@ -17,6 +17,8 @@ class Run < ActiveRecord::Base
   named_scope :lands, :joins => :card, :conditions => { "cards.cardtype" => "land" }
   named_scope :creatures, :joins => :card, :conditions => { "cards.cardtype" => "creature" }
   named_scope :spells, :joins => :card, :conditions => { "cards.cardtype" => "spell" }
+  named_scope :nonlands, :joins => :card, :conditions => { "cards.cardtype" => ["spell", "creature"] }
+  named_scope :unknown, :joins => :card, :conditions => { "cards.mtg_id" => nil }
 
 
   def name

@@ -70,6 +70,9 @@ describe "Syntax Sugar" do
   end
 
   it "should find cards by type from a pile collection" do
-  
+    @deck.maindeck.spells.count.should == 2
+    @deck.maindeck.creatures.count.should == 2
+    @deck.maindeck.lands.count.should == 2
+    @deck.maindeck.nonlands.count.should == 4
   end
 end

@@ -1,0 +1,8 @@
+<% runs.each do |run| %>
+<tr id="run<%= run.id%>">
+  <td>&nbsp;</td>
+  <td class="run_count"><%= run.count %></td>
+  <td class="card_name"><%= run.name %></td>
+  <td><span class='delete_run' href=''>X</span></td>
+</tr>
+<% end %>

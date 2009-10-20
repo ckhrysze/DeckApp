@@ -1,15 +1,25 @@
 class Card < ActiveRecord::Base
 
-  named_scope :land, :conditions => { "cardtype" => "land" }
+  named_scope :lands, :conditions => { "cardtype" => "land" }
+  named_scope :creatures, :conditions => { "cardtype" => "creature" }
+  named_scope :spells, :conditions => { "cardtype" => "spell" }
 
-  named_scope :by_runs, lambda { |runs|
-    card_ids = runs.map(&:card_id)
-    {:conditions => ['id in (?)', card_ids]}
-  }
+  def after_create
+    sync_with_gatherer
+  end
 
   def sync_with_gatherer()
-    self.mtg_id = Gatherer.retrieve_mtg_id(name).to_i
+    self if synced
+    gatherer_info = Gatherer.retrieve_gatherer_info(name.gsub(" ", "%20"))
+    self.mtg_id = gatherer_info[:mtg_id]
+    self.cc = gatherer_info[:cc]
+    self.cmc = gatherer_info[:cmc]
+    self.cardtype = gatherer_info[:cardtype]
     save()
     self
+  end
+
+  def synced
+    return !mtg_id.nil?
   end
 end

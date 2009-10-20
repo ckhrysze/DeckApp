@@ -16,6 +16,7 @@ class RunsController < ApplicationController
     pile = "maindeck"
 
     card = Card.find_or_create_by_name(card_name)
+    card = card.sync_with_gatherer
 
     runs = Run.find(:all, :conditions => {:deck_id => deck.id, :card_id => card.id, :pile => pile})
     raise "found multiple runs of the same card and pile" if runs.length > 1

@@ -9,18 +9,10 @@
   <body>
     <% cols = 5 %>
 
-    <div id="header">
-      <a class="rpxnow" onclick="return false;"
-          href="https://monkeymagic.rpxnow.com/openid/v2/signin?token_url=http://localhost:3000/auth/rpxcallback">
-        Sign In
-      </a>
-    </div>
-
     <div id="container">
 
       <div id="deck_entry" class="column col_center">
         <div>
-          <h3>Card Entry</h3>
           <input id="card_entry" />
           <button id="add_card_button" name="add_card">+</button>
           <div>
@@ -36,8 +28,7 @@
 
       <div id="deck_list" class="column col_left">
         <div>
-          <h3>Deck List</h3>
-          <table>
+          <table>              
             <tr id="decklist_header">
               <td>Type</td>
               <td>Count</td>
@@ -47,10 +38,6 @@
               <td>CMC</td>
               <td>&nbsp;</td>
             </tr>
-            <tr id="pending_header">
-              <td colspan="<%=cols%>">Pending</td>
-            </tr>
-            <tr id="blank_pending_row" />
 
             <tr id="land_header">
               <td colspan="<%=cols%>">Lands</td>
@@ -71,13 +58,27 @@
             <tr id="blank_spell_row" />
 
           </table>
+
+          <table>
+            <tr id="pending_header">
+              <td colspan="<%=cols%>">Pending</td>
+            </tr>
+            <tr id="blank_pending_row" />
+          </table>
+
+          <table>
+            <tr id="unknown_header">
+              <td colspan="<%=cols%>">Couldn't resolve, you might as well delete these</td>
+            </tr>
+            <%= render :partial => "run_rows", :locals => {:runs => @deck.maindeck.unknown } %>
+            <tr id="blank_unknown_row" />
+          </table>
         </div>
       </div>
 
       <div id="deck_stats" class="column col_right">
         <div>
-          <h3>Deck Stats</h3>
-          <p>Coming soon!</p>
+          <p><img id="mana_curve_chart" src="<%= @deck.mana_curve_chart %>" alt="<%= @deck.mana_curve_alt %>" /></p>
         </div>
       </div>
     </div>
@@ -86,10 +87,5 @@
       <div id="footer"></div>
     </div>
 
-    <script src="https://rpxnow.com/openid/v2/widget" type="text/javascript"></script>
-    <script type="text/javascript">
-      RPXNOW.overlay = true;
-      RPXNOW.language_preference = 'en';
-    </script>
   </body>
 </html>
