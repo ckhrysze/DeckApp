@@ -33,6 +33,8 @@ $(document).ready(function() {
     $("#add_card_button").click(function() {
         addCard()
     } )
+
+    loadManaCurveChart()
 });
 
 var basepath = ""
@@ -142,4 +144,11 @@ function createUnknownRow(slotSelector, rowId, count, name) {
         "</td><td>"+ name +
         "<td><span class='delete_run' href=''>X</span></td></tr>"
         )
+}
+
+function loadManaCurveChart() {
+    $.getJSON(basepath + "mana_curve_chart", displayManaCurveChart)
+}
+function displayManaCurveChart(chartData) {
+    $("#deck_stats").append("<img src=\"" + chartData.src + "\" alt=\"" + chartData.alt)
 }

@@ -1,6 +1,14 @@
 class DecksController < ApplicationController
   layout nil
 
+  def mana_curve_chart
+    @deck = Deck.find(params[:id])
+    render :json => {:src => @deck.mana_curve_chart, :alt => "mana curve chart"}.to_json
+  end
+
+  def blah
+  end
+
   def index
     @decks = Deck.all
 

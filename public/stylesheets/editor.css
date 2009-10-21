@@ -1,13 +1,6 @@
 #deck_entry div {
   text-align: center;
-}
-
-#deck_list div {
-  text-align: center;
-}
-
-#deck_stats div {
-  text-align: center;
+  color: #585858;
 }
 
 table {
@@ -22,4 +15,8 @@ td {
 .delete_run {
   color: #FF0000;
   text-decoration: underline;
+}
+
+#decklist_header {
+  font-weight: bold;
 }

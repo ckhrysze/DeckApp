@@ -1,10 +1,10 @@
 body {
-  min-width: 750px;         /* 2 x (LC fullwidth + CC padding) + RC fullwidth */
+  min-width: 920px;         /* 2 x (LC fullwidth + CC padding) + RC fullwidth */
 }
 
 #container {
-  padding-left: 250px;      /* LC fullwidth */
-  padding-right: 290px;     /* RC fullwidth + CC padding */
+  padding-left: 300px;      /* LC fullwidth */
+  padding-right: 320px;     /* RC fullwidth + CC padding */
 }
 
 #container .column {
@@ -13,20 +13,20 @@ body {
 }
 
 .col_center {
-  padding: 10px 20px;       /* CC padding */
+  padding: 10px 10px;       /* CC padding */
   width: 100%;
 }
 
 .col_left {
-  width: 230px;             /* LC width */
-  padding: 0 10px;          /* LC padding */
-  right: 290px;             /* LC fullwidth + CC padding */
+  width: 300px;             /* LC width */
+  padding: 0;          /* LC padding */
+  right: 310px;             /* LC fullwidth + CC padding */
   margin-left: -100%;
 }
 
 .col_right {
-  width: 230px;             /* RC width */
-  padding: 0 10px;          /* RC padding */
+  width: 300px;             /* RC width */
+  padding: 0;          /* RC padding */
   margin-right: -100%;
 }
 
@@ -36,7 +36,7 @@ body {
 
 /*** IE 6 (and 7?) Fix ***/
 * html #left {
-  left: 230px;              /* RC fullwidth */
+  left: 300px;              /* RC fullwidth */
 }
 
 /*** Equal-height Columns ***/

@@ -7,7 +7,7 @@
     <%= stylesheet_link_tag 'reset-fonts', 'layout', 'editor' %>
   </head>
   <body>
-    <% cols = 5 %>
+    <% cols = 6 %>
 
     <div id="container">
 
@@ -27,59 +27,62 @@
       </div>
 
       <div id="deck_list" class="column col_left">
-        <div>
-          <table>              
-            <tr id="decklist_header">
-              <td>Type</td>
-              <td>Count</td>
-              <td>Name</td>
-              <td>MtG id</td>
-              <td>CC</td>
-              <td>CMC</td>
-              <td>&nbsp;</td>
-            </tr>
+        <table>
+          <tr id="decklist_header">
+            <td>Type</td>
+            <td>Count</td>
+            <td>Name</td>
+            <td>CC</td>
+            <td>CMC</td>
+            <td>&nbsp;</td>
+          </tr>
 
-            <tr id="land_header">
-              <td colspan="<%=cols%>">Lands</td>
-            </tr>
-            <%= render :partial => "run_rows", :locals => {:runs => @deck.maindeck.lands } %>
-            <tr id="blank_land_row" />
+          <tr id="land_header">
+            <td>Lands</td>
+          </tr>
+          <%= render :partial => "run_rows", :locals => {:runs => @deck.maindeck.lands } %>
+          <tr id="blank_land_row" />
 
-            <tr id="creature_header">
-              <td colspan="<%=cols%>">Creatures</td>
-            </tr>
-            <%= render :partial => "run_rows", :locals => {:runs => @deck.maindeck.creatures } %>
-            <tr id="blank_creature_row" />
+          <tr id="creature_header">
+            <td>Creatures</td>
+          </tr>
+          <%= render :partial => "run_rows", :locals => {:runs => @deck.maindeck.creatures } %>
+          <tr id="blank_creature_row" />
 
-            <tr id="spell_header">
-              <td colspan="<%=cols%>">Spells</td>
-            </tr>
-            <%= render :partial => "run_rows", :locals => {:runs => @deck.maindeck.spells } %>
-            <tr id="blank_spell_row" />
+          <tr id="spell_header">
+            <td>Spells</td>
+          </tr>
+          <%= render :partial => "run_rows", :locals => {:runs => @deck.maindeck.spells } %>
+          <tr id="blank_spell_row" />
 
-          </table>
+          <tr class="spacer_row">
+              <td class="spacer_cell">&nbsp;</td>
+          </tr>
+          <tr class="spacer_row">
+              <td class="spacer_cell">&nbsp;</td>
+          </tr>
 
-          <table>
-            <tr id="pending_header">
-              <td colspan="<%=cols%>">Pending</td>
-            </tr>
-            <tr id="blank_pending_row" />
-          </table>
+          <tr id="pending_header">
+            <td colspan="<%=cols%>">Pending</td>
+          </tr>
+          <tr id="blank_pending_row" />
 
-          <table>
-            <tr id="unknown_header">
-              <td colspan="<%=cols%>">Couldn't resolve, you might as well delete these</td>
-            </tr>
-            <%= render :partial => "run_rows", :locals => {:runs => @deck.maindeck.unknown } %>
-            <tr id="blank_unknown_row" />
-          </table>
-        </div>
+          <tr class="spacer_row">
+              <td class="spacer_cell">&nbsp;</td>
+          </tr>
+          <tr class="spacer_row">
+              <td class="spacer_cell">&nbsp;</td>
+          </tr>
+
+          <tr id="unknown_header">
+            <td colspan="<%=cols%>">Couldn't resolve, you may as well delete these</td>
+          </tr>
+          <%= render :partial => "run_rows", :locals => {:runs => @deck.maindeck.unknown } %>
+          <tr id="blank_unknown_row" />
+        </table>
       </div>
 
       <div id="deck_stats" class="column col_right">
-        <div>
-          <p><img id="mana_curve_chart" src="<%= @deck.mana_curve_chart %>" alt="<%= @deck.mana_curve_alt %>" /></p>
-        </div>
       </div>
     </div>
 

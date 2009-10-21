@@ -28,6 +28,8 @@ class Deck < ActiveRecord::Base
   end
 
   def cmc_values
+    return [] if maindeck.nonlands.length == 0
+
     dataset = {}
     maindeck.nonlands.each do |r|
       if dataset.has_key?(r.cmc)
