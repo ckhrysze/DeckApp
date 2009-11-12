@@ -9,7 +9,9 @@ class Card < ActiveRecord::Base
   end
 
   def sync_with_gatherer()
-    self if synced
+    return self if synced
+
+    RAILS_DEFAULT_LOGGER.info("Attempting to sync #{name}")
     gatherer_info = Gatherer.retrieve_gatherer_info(name.gsub(" ", "%20"))
     self.mtg_id = gatherer_info[:mtg_id]
     self.cc = gatherer_info[:cc]

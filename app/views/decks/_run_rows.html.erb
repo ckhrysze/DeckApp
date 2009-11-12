@@ -1,10 +1,9 @@
 <% runs.each do |run| %>
-<tr id="run<%= run.id%>">
+<tr id="run<%= run.id%>" class="<%= classes.join(' ') %>">
   <td>&nbsp;</td>
   <td class="run_count"><%= run.count %></td>
-  <td class="card_name"><a href="http://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=<%= run.mtg_id %>">
+  <td class="card_name"><a href="<%= Gatherer.baseurl %><%= run.mtg_id %>">
     <%= run.name %></a></td>
-  <td class="mtg_id"><%= run.mtg_id %></td>
   <td class="cc"><%= run.cc %></td>
   <td class="cmc"><%= run.cmc %></td>
   <td><span class='delete_run' href=''>X</span></td>

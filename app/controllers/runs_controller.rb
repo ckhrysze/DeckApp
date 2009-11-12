@@ -27,8 +27,7 @@ class RunsController < ApplicationController
     @run.save
 
     respond_to do |format|
-      format.xml  { render :xml => @run.to_json( :include => :card ) }
-      format.json  { render :xml => @run.to_json( :include => :card ) }
+      format.json  { render :json => @run.to_json( :include => :card ) }
     end
   end
 

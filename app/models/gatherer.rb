@@ -3,6 +3,11 @@ require 'uri'
 require 'hpricot'
 
 class Gatherer
+
+  def self.baseurl
+    "http://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid="
+  end
+
   def self.retrieve_gatherer_info(name)
     urlString = "http://gatherer.wizards.com/Pages/Card/Details.aspx?name=#{name}"
 

@@ -68,10 +68,14 @@ body {
 #header, #footer {
   font-size: large;
   text-align: center;
-  padding: 0.3em 0;
 }
 
 #container .column {
   padding-top: 1em;
   text-align: justify;
+}
+
+#header {
+  background-color: #362c22;
+  background-image: url("/images/mtg_tile.png");
 }

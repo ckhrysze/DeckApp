@@ -1,5 +1,4 @@
 class DecksController < ApplicationController
-  layout nil
 
   def mana_curve_chart
     @deck = Deck.find(params[:id])

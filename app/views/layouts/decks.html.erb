@@ -1,17 +1,18 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<% content_for :content do %>
+    <div id="container">
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-  <head>
-    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-    <title>Decks: <%= controller.action_name %></title>
-    <%= stylesheet_link_tag 'scaffold' %>
-  </head>
-  <body>
+      <div class="column col_center">
+        <%= yield :main %>
+      </div>
 
-    <p style="color: green"><%= flash[:notice] %></p>
+      <div class="column col_left">
+        <%= yield :left %>
+      </div>
 
-    <%= yield %>
+      <div class="column col_right">
+        <%= yield :right %>
+      </div>
+    </div>
+<% end -%>
 
-  </body>
-</html>
+<%= render :file => 'layouts/application' %>

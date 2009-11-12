@@ -1,20 +1,37 @@
-#deck_entry div {
-  text-align: center;
-  color: #585858;
+#deck_entry {
+  width: 268px;
+  margin: auto;
 }
 
-table {
+#deck_entry table {
+  margin-top: 45px;
+}
+
+#input_entry {
+  text-align: center;
+}
+
+#input_example {
+  width: 100%;
+  text-align: left;
+  color: #999999;
+}
+
+#deck_list table {
   width: 100%
 }
 
 td {
   text-align: left;
-  padding: 2px;
+  padding: 5px;
 }
 
 .delete_run {
   color: #FF0000;
-  text-decoration: underline;
+}
+
+td .delete_run:hover {
+  cursor: pointer;
 }
 
 #decklist_header {

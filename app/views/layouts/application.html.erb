@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <%= stylesheet_link_tag 'reset-fonts', 'layout' %>
+    <%= yield :head %>
+  </head>
+  <body>
+    <div id="header">
+      <a href="/"><%= image_tag 'logo.png' %></a>
+    </div>
+    <%= yield :content %>
+    <div id="footer-wrapper">
+      <div id="footer"></div>
+    </div>
+  </body>
+</html>

@@ -9,6 +9,7 @@ ActionController::Routing::Routes.draw do |map|
     decks.connect 'decks/:id/mana_curve_chart', :action => 'mana_curve_chart'
   end
 
+  map.root :controller => "landing"
   # The priority is based upon order of creation: first created -> highest priority.
 
   #map.connect 'auth/:action', :controller => 'auth'
