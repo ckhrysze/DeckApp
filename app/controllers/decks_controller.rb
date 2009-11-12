@@ -12,7 +12,7 @@ class DecksController < ApplicationController
     @decks = Deck.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html { render :layout => 'application' } # index.html.erb
       format.xml  { render :xml => @decks }
     end
   end
