@@ -1,3 +1,7 @@
+html, body {
+  background-color: #FFFFDD;
+}
+
 body {
   min-width: 920px;         /* 2 x (LC fullwidth + CC padding) + RC fullwidth */
 }

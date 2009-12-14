@@ -43,6 +43,7 @@ var pendingTracker = 0
 
 function onCardsChanged() {
     loadManaCurveChart()
+    updateTotal()
     var visibility = ($(".unknown").size() > 0 ) ? "visible" : "hidden"
     debug.info("setting unknown header to " + visibility)
     $("#unknown_header").css("visibility", visibility)
@@ -52,6 +53,9 @@ function loadManaCurveChart() {
     $.getJSON(basepath + "mana_curve_chart", displayManaCurveChart)
 }
 function displayManaCurveChart(chartData) {
-    $("#deck_stats").empty()
-    $("#deck_stats").append("<img src=\"" + chartData.src + "\" alt=\"" + chartData.alt)
+    $("#mana_curve").attr("src", chartData.src)
+}
+
+function updateTotal() {
+    
 }

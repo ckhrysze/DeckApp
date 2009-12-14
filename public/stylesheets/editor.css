@@ -9,6 +9,7 @@
 
 #input_entry {
   text-align: center;
+  margin-top: 15px;
 }
 
 #input_example {
@@ -36,4 +37,9 @@ td .delete_run:hover {
 
 #decklist_header {
   font-weight: bold;
+}
+
+.section {
+  background-color: #FFFFFF;
+  border: 1px solid #999;
 }
