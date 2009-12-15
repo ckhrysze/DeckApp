@@ -16,6 +16,26 @@ body {
   float: left;
 }
 
+#logo {
+  clear: both;
+}
+
+#nav {
+  float: left;
+  margin-top: -18px;
+}
+
+#nav li {
+  /*color: #AB5933;*/
+  display: inline;
+  padding: 5px 10px 2px 10px;
+}
+
+#nav li, #nav a {
+  color: #62a3db;
+  background-color: #3c2716;
+}
+
 .col_center {
   padding: 10px 10px;       /* CC padding */
   width: 100%;
@@ -36,6 +56,13 @@ body {
 
 #footer {
   clear: both;
+  position:absolute;
+  bottom:0;
+  width:100%;
+  font-size: 10px;
+  height:50px;   /* Height of the footer */
+  color: white;
+  background-color: black;
 }
 
 /*** IE 6 (and 7?) Fix ***/
@@ -70,13 +97,18 @@ body {
 
 /*** Just for Looks ***/
 #header, #footer {
-  font-size: large;
   text-align: center;
 }
 
 #container .column {
   padding-top: 1em;
   text-align: justify;
+  font-family: Arial, "MS Trebuchet", sans-serif;
+}
+
+p {
+  font-size: large;
+  padding: 15px;
 }
 
 #header {

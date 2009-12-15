@@ -9,11 +9,24 @@
   </head>
   <body>
     <div id="header">
-      <a href="/"><%= image_tag 'logo.png' %></a>
+      <div id="logo"><a href="/"><%= image_tag 'logo.png' %></a></div>
+      <nav>
+        <ul id="nav">
+          <li><a href="/" title="Home">Home</a></li>
+          <li><a href="/decks" title="Decks">Decks</a></li>
+          <li><a href="/tools" title="Tools">Tools</a></li>
+        </ul>
+      </nav>
     </div>
     <%= yield(:content) || yield %>
     <div id="footer-wrapper">
-      <div id="footer"></div>
+      <div id="footer">This [Web site] is not affiliated with, endorsed, sponsored,
+      or specifically approved by Wizards of the Coast LLC. This [Web site] may use the
+      trademarks and other intellectual property of Wizards of the Coast LLC, which is
+      permitted under Wizards' Fan Site Policy [link]. For example, MAGIC: THE GATHERING
+      is a trademark[s] of Wizards of the Coast. For more information about
+      Wizards of the Coast or any of Wizards' trademarks or other intellectual property,
+      please visit their website at (www.wizards.com).</div>
     </div>
   </body>
 </html>
