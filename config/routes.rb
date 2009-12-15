@@ -10,11 +10,4 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.root :controller => "landing"
-  # The priority is based upon order of creation: first created -> highest priority.
-
-  #map.connect 'auth/:action', :controller => 'auth'
-
-  # map.connect ':controller/:action.:format'
-  # map.connect ':controller/:action/:id'
-  # map.connect ':controller/:action/:id.:format'
 end
