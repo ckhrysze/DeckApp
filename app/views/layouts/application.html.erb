@@ -17,6 +17,12 @@
           <li><a href="/tools" title="Tools">Tools</a></li>
         </ul>
       </nav>
+      <div style="float: right">
+        <a class="rpxnow" onclick="return false;"
+          href="https://thedeckbuilding.rpxnow.com/openid/v2/signin?token_url=http://localhost:3000/login">
+          Sign In
+        </a>
+      </div>
     </div>
     <%= yield(:content) || yield %>
     <div id="footer-wrapper">
@@ -28,5 +34,10 @@
       Wizards of the Coast or any of Wizards' trademarks or other intellectual property,
       please visit their website at (www.wizards.com).</div>
     </div>
+    <script src="https://rpxnow.com/openid/v2/widget" type="text/javascript"></script>
+    <script type="text/javascript">
+      RPXNOW.overlay = true;
+      RPXNOW.language_preference = 'en';
+    </script>
   </body>
 </html>

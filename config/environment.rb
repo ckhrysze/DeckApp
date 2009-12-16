@@ -9,6 +9,7 @@ require File.join(File.dirname(__FILE__), 'boot')
 require 'plugins/app_config/lib/configuration'
 Rails::Initializer.run do |config|
   config.time_zone = 'UTC'
-
   config.app_config.my_key = 'my value'
+
+  #"4ec43e7f1fcbbbcd998b73210c3fbff40fd6c421"
 end

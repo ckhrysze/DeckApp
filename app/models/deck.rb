@@ -1,4 +1,7 @@
 class Deck < ActiveRecord::Base
+
+  belongs_to :user
+
   has_many :runs
   has_many :cards, :through => :runs
 

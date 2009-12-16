@@ -5,9 +5,6 @@ class DecksController < ApplicationController
     render :json => {:src => @deck.mana_curve_chart, :alt => "mana curve chart"}.to_json
   end
 
-  def blah
-  end
-
   def index
     @decks = Deck.all
 
