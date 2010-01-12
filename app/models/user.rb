@@ -1,6 +1,11 @@
-class User < ActiveRecord::Base
+class User
+  include MongoMapper::Document
 
-  has_many :decks
-  has_many :identifiers
+  key :email, String
+  key :nick, String
+  key :photo_url, String
+
+  many :decks
+  many :identifiers
 
 end

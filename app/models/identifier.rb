@@ -1,5 +1,9 @@
-class Identifier < ActiveRecord::Base
+class Identifier
+  include MongoMapper::EmbeddedDocument
 
-  belongs_to :user
+  key :display, String
+  key :email, String
+  key :ident, String
+  key :provider, String
 
 end

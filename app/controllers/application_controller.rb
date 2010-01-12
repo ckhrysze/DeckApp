@@ -7,4 +7,11 @@ class ApplicationController < ActionController::Base
 
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
+
+  def require_login
+    if session[:current_user_name].nil?
+      flash[:error] = "You must be logged in to access this section"
+      redirect_to root_url # halts request cycle
+    end 
+  end
 end

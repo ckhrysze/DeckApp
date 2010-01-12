@@ -1,5 +1,7 @@
 class DecksController < ApplicationController
 
+  #before_filter :require_login
+
   def mana_curve_chart
     @deck = Deck.find(params[:id])
     render :json => {:src => @deck.mana_curve_chart, :alt => "mana curve chart"}.to_json

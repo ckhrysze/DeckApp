@@ -10,6 +10,7 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.connect "login", :controller => :rpx, :action => :index
+  map.connect "logout", :controller => :rpx, :action => :logout
 
   map.root :controller => "landing"
 end

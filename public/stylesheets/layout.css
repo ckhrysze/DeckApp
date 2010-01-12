@@ -23,6 +23,7 @@ body {
 #nav {
   float: left;
   margin-top: -18px;
+  width: 300px;
 }
 
 #nav li {
@@ -34,6 +35,15 @@ body {
 #nav li, #nav a {
   color: #62a3db;
   background-color: #3c2716;
+}
+
+#login_container {
+  text-align: right;
+  color: white;
+  background-color: black;
+}
+#login_container a{
+  color: white;
 }
 
 .col_center {

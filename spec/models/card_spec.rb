@@ -5,7 +5,7 @@ describe Card do
   describe "after_create" do
     it "should fail gracefully when sync fails" do
       Gatherer.should_receive("retrieve_gatherer_info").with("forest").and_return({})
-      c = Card.create!({:name => "forest"})
+      c = Card.create({:name => "forest"})
       c.name.should == "forest"
       c.mtg_id.should be_nil
       c.synced.should == false

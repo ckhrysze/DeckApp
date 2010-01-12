@@ -9,6 +9,12 @@
   </head>
   <body>
     <div id="header">
+      <div id="login_container">
+        <a class="rpxnow" onclick="return false;"
+          href="https://thedeckbuilding.rpxnow.com/openid/v2/signin?token_url=<%=h('http://localhost:3000/login')%>">
+          Sign In
+        </a>
+      </div>
       <div id="logo"><a href="/"><%= image_tag 'logo.png' %></a></div>
       <nav>
         <ul id="nav">
@@ -17,12 +23,6 @@
           <li><a href="/tools" title="Tools">Tools</a></li>
         </ul>
       </nav>
-      <div style="float: right">
-        <a class="rpxnow" onclick="return false;"
-          href="https://thedeckbuilding.rpxnow.com/openid/v2/signin?token_url=http://localhost:3000/login">
-          Sign In
-        </a>
-      </div>
     </div>
     <%= yield(:content) || yield %>
     <div id="footer-wrapper">

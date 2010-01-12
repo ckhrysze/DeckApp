@@ -1,9 +1,13 @@
-class Deck < ActiveRecord::Base
+class Deck
+  include MongoMapper::Document
+
+  key :name, String
+  key :maindeck, Pile, :default => Pile.new(:name => 'maindeck')
+  key :sideboard, Pile, :default => Pile.new(:name => 'sideboard')
+  timestamps!
 
   belongs_to :user
 
-  has_many :runs
-  has_many :cards, :through => :runs
 
   def mana_curve_chart
     google_chart_base_url = "http://chart.apis.google.com/chart?"
@@ -50,15 +54,5 @@ class Deck < ActiveRecord::Base
     dataset.sort.map { |key,value|
       value
     }
-  end
-
-  def maindeck
-    runs.maindeck(true)
-  end
-  def sideboard
-    runs.sideboard(true)
-  end
-  def considering
-    runs.considering(true)
   end
 end

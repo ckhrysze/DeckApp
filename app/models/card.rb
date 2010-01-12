@@ -1,10 +1,16 @@
-class Card < ActiveRecord::Base
+class Card
+  include MongoMapper::Document
 
-  named_scope :lands, :conditions => { "cardtype" => "land" }
-  named_scope :creatures, :conditions => { "cardtype" => "creature" }
-  named_scope :spells, :conditions => { "cardtype" => "spell" }
+  key :name, String
+  key :cardtype, String
+  key :mtg_id, String
+  key :cc, String
+  key :cmc, Integer
+  timestamps!
 
-  def after_create
+
+  after_create :after_create_callback
+  def after_create_callback
     sync_with_gatherer
   end
 
@@ -22,6 +28,6 @@ class Card < ActiveRecord::Base
   end
 
   def synced
-    return !mtg_id.nil?
+    return !(mtg_id.nil? || mtg_id == "")
   end
 end

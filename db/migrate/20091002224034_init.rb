@@ -3,6 +3,8 @@ class Init < ActiveRecord::Migration
 
     create_table :users do |t|
       t.string :display_name
+      t.string :email
+      t.string :photo_url
     end
 
     create_table :identifiers do |t|
