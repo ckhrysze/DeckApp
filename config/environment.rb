@@ -19,8 +19,8 @@ if db_config[Rails.env] && db_config[Rails.env]['adapter'] == 'mongodb'
   MongoMapper.connection = Mongo::Connection.new(mongo['hostname'])
   MongoMapper.database = mongo['database']
   if mongo['username'] && mongo['password']
-    MongoMapper.database.authenticate(mongo['username'],
-                                      mongo['password'])
+    MongoMapper.database.authenticate(ENV['MONGOHQ_USER'],
+                                      ENV['MONGOHQ_PASS'])
   end
 end
 
