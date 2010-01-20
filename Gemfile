@@ -1,1 +1,1 @@
-gem 'mongo_mapper'  >= '0.6.10'
+gem 'mongo_mapper' >= '0.6.10'
