@@ -23,7 +23,7 @@ if db_config[Rails.env] && db_config[Rails.env]['adapter'] == 'mongodb'
   MongoMapper.connection = Mongo::Connection.new(mongo['host'],
                                                  mongo['port'],
                                                  { :logger => Rails.logger,
-                                                   ,:auto_reconnect => true})
+                                                   :auto_reconnect => true})
   
   MongoMapper.database = mongo['database']
   if mongo['username'].present?
