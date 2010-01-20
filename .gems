@@ -1,0 +1,1 @@
+mongo_mapper --version '>= 0.6.10'
