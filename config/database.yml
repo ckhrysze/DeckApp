@@ -18,7 +18,7 @@ test:
   database: deckapp_test
 
 production:
-  host: genesis.local.mongohq.com
+  host: genesis.mongohq.com
   port: 27018
   adapter: mongodb
   database: deckapp
