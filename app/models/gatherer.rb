@@ -19,7 +19,7 @@ class Gatherer
       }
       parse(result.body)
     rescue => error
-      ActiveRecord::Base.logger.info("Error hitting gatherer\n#{error.inspect}")
+      Rails.logger.info("Error hitting gatherer\n#{error.inspect}")
     end
   end
 

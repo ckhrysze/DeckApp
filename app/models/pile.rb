@@ -4,8 +4,8 @@ class Pile
   key :name, String
   many :runs
 
-
   def <<(run)
+    runs = [] if runs.nil?
     self.runs << run
   end
 
@@ -18,7 +18,7 @@ class Pile
   end
 
   def creatures
-    self.runs.select { |r| r.cardtype == 'craeture' }
+    self.runs.select { |r| r.cardtype == 'creature' }
   end
 
   def spells
@@ -27,6 +27,10 @@ class Pile
 
   def unknown
     self.runs.select { |r| r.cardtype.blank? }
+  end
+
+  def count
+    self.runs.sum { |r| r.count }
   end
 
 end

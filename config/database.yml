@@ -1,11 +1,16 @@
 development:
-  adapter: mondogb
-  database: deckapp
+  host: localhost
+  adapter: mongodb
+  database: deckapp_dev
 
 test:
+  host: localhost
   adapter: mongodb
   database: deckapp_test
 
 production:
+  host: genesis.local.mongohq.com:27018
   adapter: mongodb
   database: deckapp
+  username: user
+  password: pass

@@ -2,9 +2,10 @@ class Run
   include MongoMapper::EmbeddedDocument
 
   key :count, Integer
-  key :card, Mongo::ObjectID
+  key :card_id, Mongo::ObjectID
 
-  delegate :cardtype, :name, :cmc,
-  :to => :card
+  belongs_to :card
+
+  delegate :cardtype, :name, :cmc, :cc, :mtg_id, :to => :card
 
 end

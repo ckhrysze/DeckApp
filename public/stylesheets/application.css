@@ -10,6 +10,10 @@ html, body {
     border-bottom: 1px solid black;
 }
 
+#bd {
+    background-color: #ffffff;
+}
+
 #logo {
     clear: both;
 }

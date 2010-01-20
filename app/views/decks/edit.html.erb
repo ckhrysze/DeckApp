@@ -1,47 +1,18 @@
 <% content_for :head do %>
-    <title><%= @deck.name %></title>
+    <title>Deck Editor</title>
     <%= javascript_include_tag 'jquery-1.3.2', 'ba-debug.min', 'editor/creation', 'editor/init' %>
-    <%= stylesheet_link_tag 'reset-fonts', 'layout', 'editor' %>
+    <%= stylesheet_link_tag 'editor' %>
 <% end %>
 
 <% cols = 6 %>
 
-<% content_for :main do %>
-      <div id="deck_entry" >
-        <div class="section">
-          <div id="input_entry">
-            <input id="card_entry" size="34" />
-            <button id="add_card_button" name="add_card">+</button>
-          </div>
-  
-          <div id="input_example">
-            <p><span style="font-weight: bold">examples:</span></p>
-            <ul style="margin-left: 18px">
-              <li>island</li>
-              <li>4 llanowar elves</li>
-              <li>4x shock</li>
-            </ul>
-          </div>
-        </div>
+<% content_for :content do %>
+<div class="title_block">
+  <span class="title"><%= @deck.name %></span>
+</div>
 
-        <table class="section">
-          <tr id="pending_header">
-            <td colspan="<%=cols%>">Pending</td>
-          </tr>
-          <tr id="blank_pending_row" />
-        </table>
-        
-        <table class="section">
-          <tr id="unknown_header" style="visibility: hidden">
-            <td colspan="<%=cols%>">Couldn't resolve, you may as well delete these</td>
-          </tr>
-          <%= render :partial => "unknown_run_rows", :locals => {:runs => @deck.maindeck.unknown } %>
-          <tr id="blank_unknown_row" />
-        </table>
-      </div>
-<% end %>
-
-<% content_for :left do %>
+<div class="yui-gb">
+  <div class="yui-u first">
       <div id="deck_list">
         <table class="section">
           <tr id="decklist_header">
@@ -53,37 +24,71 @@
             <td>&nbsp;</td>
           </tr>
 
-          <tr id="land_header">
+          <tr id="land_header" class="hrule">
             <td>Lands</td>
           </tr>
           <%= render :partial => "run_rows",
                 :locals => {:runs => @deck.maindeck.lands, :classes => ['maindeck'] } %>
           <tr id="blank_land_row" />
 
-          <tr id="creature_header">
+          <tr id="creature_header" class="hrule">
             <td>Creatures</td>
           </tr>
           <%= render :partial => "run_rows",
                 :locals => {:runs => @deck.maindeck.creatures, :classes => ['maindeck', 'nonland'] } %>
           <tr id="blank_creature_row" />
 
-          <tr id="spell_header">
+          <tr id="spell_header" class="hrule">
             <td>Spells</td>
           </tr>
           <%= render :partial => "run_rows",
                 :locals => {:runs => @deck.maindeck.spells, :classes => ['maindeck', 'nonland'] } %>
           <tr id="blank_spell_row" />
-          
-          <tr>
+
+          <tr class="hrule">
               <td>Total</td>
-              <td id="total_cards"></td>
+              <td class="total_cards"><%= @deck.maindeck.count %></td>
           </tr>
         </table>
       </div>
-<% end %>
+  </div>
 
-<% content_for :right do %>
-      <div id="deck_stats" class="section">
-        <img id="mana_curve" alt="mana curve chart" />
-      </div>
+  <div class="yui-u">
+    <div id="input_entry">
+      <input id="card_entry" size="34" />
+      <button id="add_card_button" name="add_card">+</button>
+    </div>
+
+    <div id="input_example">
+      <p><span style="font-weight: bold">examples:</span></p>
+      <ul style="margin-left: 18px">
+        <li>island</li>
+        <li>4 llanowar elves</li>
+        <li>4x shock</li>
+      </ul>
+    </div>
+
+    <table class="section">
+      <tr id="pending_header">
+        <td colspan="<%=cols%>">Pending</td>
+      </tr>
+      <tr id="blank_pending_row" />
+    </table>
+
+    <table class="section">
+      <tr id="unknown_header" style="visibility: hidden">
+        <td colspan="<%=cols%>">Couldn't resolve, you may as well delete these</td>
+      </tr>
+      <%= render :partial => "unknown_run_rows", :locals => {:runs => @deck.maindeck.unknown } %>
+      <tr id="blank_unknown_row" />
+    </table>
+  </div>
+
+  <div class="yui-u">
+    <div id="deck_stats" class="section">
+      <img id="mana_curve" alt="mana curve chart" />
+    </div>
+  </div>
+
+</div>
 <% end %>

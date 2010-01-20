@@ -12,5 +12,15 @@ Rails::Initializer.run do |config|
   config.frameworks -= [:active_record]
 end
 
-MongoMapper.database = "deckapp_#{Rails.env}"
+db_config = YAML::load(File.read(RAILS_ROOT + "/config/database.yml"))
+ 
+if db_config[Rails.env] && db_config[Rails.env]['adapter'] == 'mongodb'
+  mongo = db_config[Rails.env]
+  MongoMapper.connection = Mongo::Connection.new(mongo['hostname'])
+  MongoMapper.database = mongo['database']
+  if mongo['username'] && mongo['password']
+    MongoMapper.database.authenticate(mongo['username'],
+                                      mongo['password'])
+  end
+end
 

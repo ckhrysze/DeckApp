@@ -12,19 +12,19 @@ class RunsController < ApplicationController
   def create
     card_name = params[:card_name]
     deck = Deck.find(params[:deck_id])
-    count = params[:count].to_i
-    pile = "maindeck"
+    count = params[:count].blank? ? 1 : params[:count].to_i
 
     card = Card.find_or_create_by_name(card_name)
     card = card.sync_with_gatherer
 
-    runs = Run.find(:all, :conditions => {:deck_id => deck.id, :card_id => card.id, :pile => pile})
-    raise "found multiple runs of the same card and pile" if runs.length > 1
+    @run = deck.maindeck.runs.detect { |r| r.card_id == card.id }
+    if @run.nil?
+      @run = Run.new(:card => card, :count => 0)
+      deck.maindeck.runs << @run
+    end
 
-    @run = runs.first unless runs.empty?
-    @run ||= Run.create({:deck => deck, :card => card, :pile => pile, :count => 0})
     @run.count += count
-    @run.save
+    deck.save
 
     respond_to do |format|
       format.json  { render :json => @run.to_json( :include => :card ) }
@@ -32,9 +32,11 @@ class RunsController < ApplicationController
   end
 
   def show
-    @run = Run.find(params[:id])
+    deck = Deck.find(params[:deck_id])
+    @run = deck.maindeck.runs.detect { |r| r.id == params[:id] }
     respond_to do |format|
       format.xml  { render :xml => @run.to_xml( :include => :card ) }
+      format.json  { render :json => @run.to_json( :include => :card ) }
     end
   end
 

@@ -17,6 +17,9 @@ class RpxController < ApplicationController
     json = JSON.parse(json_resp)
 
     if json['stat'] == 'ok'
+
+      logger.info("RPX says we have a valid user")
+
       unique_identifier = json['profile']['identifier']
       nickname = json['profile']['preferredUsername']
       nickname = json['profile']['displayName'] if nickname.nil?
@@ -24,22 +27,34 @@ class RpxController < ApplicationController
       provider_name = json['profile']['providerName']
       photo_url = json['profile']['photo']
 
+      logger.info("Parsed some data out: ident #{unique_identifier}, nick #{nickname}, provider #{provider_name}")
+
       # implement your own do_success method which signs the user in
       # to your website
-      #User.find(:all, :conditions => {'identifiers.ident' => 'asdfasdf'})
-      ident = Identifier.find_or_create(unique_identifier, provider_name)
-      user = User.find_or_create(ident, email, nickname, photo_url)
+      user = User.find(:one, :conditions => {'identifiers.ident' => unique_identifier})
+      if user.nil?
+        logger.info("User was not found, creating a new one")
+        user = User.new(:email => email, :nick => nickname)
+        user.identifiers << Identifier.new(:ident => unique_identifier, :provider => provider_name)
+        user.save!
+        logger.info("Saved new user with id #{user.id}")
+      else
+        logger.info("User was not nil? #{user.inspect}")
+      end
+
       session[:user] = user.id
       session[:ident] = unique_identifier
 
     else
       flash[:notice] = 'Log in failed'
-      redirect_to '/'
     end
-
-    def logout
     
-    end
+    redirect_to '/'
+  end
 
+  def logout
+    session[:user] = nil
+    session[:ident] = nil
+    redirect_to '/'    
   end
 end

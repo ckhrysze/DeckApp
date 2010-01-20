@@ -27,6 +27,13 @@ td {
   padding: 5px;
 }
 
+.title {
+  font-size: 150%;
+}
+.title_block {
+  text-align: center;
+}
+
 .delete_run {
   color: #FF0000;
 }
@@ -40,6 +47,8 @@ td .delete_run:hover {
 }
 
 .section {
-  background-color: #FFFFFF;
-  border: 1px solid #999;
+}
+
+.hrule {
+    border-top: 1px solid black;
 }

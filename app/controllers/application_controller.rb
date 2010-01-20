@@ -9,9 +9,13 @@ class ApplicationController < ActionController::Base
   # filter_parameter_logging :password
 
   def require_login
-    if session[:current_user_name].nil?
-      flash[:error] = "You must be logged in to access this section"
-      redirect_to root_url # halts request cycle
-    end 
+    if session[:user].nil?
+      @user = User.find_by_nick("default")
+      session[:user] = @user.id
+      #flash[:error] = "You must be logged in to access this section"
+      #redirect_to root_url # halts request cycle
+    else
+      @user = User.find(session[:user])
+    end
   end
 end

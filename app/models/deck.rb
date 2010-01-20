@@ -55,4 +55,12 @@ class Deck
       value
     }
   end
+
+  def colors
+    maindeck.runs.map do |run|
+      next if run.cc.blank?
+      run.cc.downcase.chars.select { |c| /[a-z]/.match(c) }
+    end.flatten.compact.uniq.to_s.upcase
+  end
+
 end

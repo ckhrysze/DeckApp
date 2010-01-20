@@ -20,6 +20,15 @@ Spec::Runner.configure do |config|
   #config.use_instantiated_fixtures  = false
   #config.fixture_path = RAILS_ROOT + '/spec/fixtures/'
 
+
+  # Drop all columns after each test case.
+  config.append_after(:each) do
+    MongoMapper.database.collections.each do |coll|
+      #puts "About to delete from collection #{coll}"
+      coll.remove
+    end
+  end
+
   # == Fixtures
   #
   # You can declare fixtures for each example_group like this:

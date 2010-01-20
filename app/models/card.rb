@@ -8,6 +8,7 @@ class Card
   key :cmc, Integer
   timestamps!
 
+  many :runs
 
   after_create :after_create_callback
   def after_create_callback

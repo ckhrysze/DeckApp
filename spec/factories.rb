@@ -21,6 +21,11 @@ end
 
 # Runs
 Factory.define :run do |r|
-  r.count 1
+  r.count 0
   r.card Factory.create(:card)
+end
+
+# Decks
+Factory.define :deck do |d|
+  d.name "A Deck"
 end

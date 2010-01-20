@@ -1,6 +1,6 @@
 class DecksController < ApplicationController
 
-  #before_filter :require_login
+  before_filter :require_login
 
   def mana_curve_chart
     @deck = Deck.find(params[:id])
@@ -8,7 +8,7 @@ class DecksController < ApplicationController
   end
 
   def index
-    @decks = Deck.all
+    @decks = @user.decks.all
 
     respond_to do |format|
       format.html { render :layout => 'application' }
@@ -17,7 +17,7 @@ class DecksController < ApplicationController
   end
 
   def show
-    @deck = Deck.find(params[:id])
+    @deck = @user.decks.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -26,20 +26,16 @@ class DecksController < ApplicationController
   end
 
   def new
-    @deck = Deck.new
-
-    respond_to do |format|
-      format.html { render :layout => 'application' }
-      format.xml  { render :xml => @deck }
-    end
+    @deck = @user.decks.build
+    #render :edit
   end
 
   def edit
-    @deck = Deck.find(params[:id])
+    @deck = @user.decks.find(params[:id])
   end
 
   def create
-    @deck = Deck.new(params[:deck])
+    @deck = @user.decks.build(params[:deck])
 
     respond_to do |format|
       if @deck.save
@@ -54,7 +50,7 @@ class DecksController < ApplicationController
   end
 
   def update
-    @deck = Deck.find(params[:id])
+    @deck = @user.decks.find(params[:id])
 
     respond_to do |format|
       if @deck.update_attributes(params[:deck])
@@ -69,7 +65,7 @@ class DecksController < ApplicationController
   end
 
   def destroy
-    @deck = Deck.find(params[:id])
+    @deck = @user.decks.find(params[:id])
     @deck.destroy
 
     respond_to do |format|
