@@ -19,7 +19,7 @@
 	    <a href='/logout'>logout</a>
 	    <% else %>
             <a class="rpxnow" onclick="return false;"
-               href="https://thedeckbuilding.rpxnow.com/openid/v2/signin?token_url=<%= url_for(:controller=>'rpx', :action=>'index', :only_path => false) %>">Sign In</a>
+               href="https://thedeckbuilding.rpxnow.com/openid/v2/signin?token_url=<%= login_url %>">Sign In</a>
 	    <% end %>
 	  </div>
 	  <div id="logo"><a href="/"><%= image_tag 'logo.png' %></a></div>

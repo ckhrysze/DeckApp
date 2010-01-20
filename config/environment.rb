@@ -15,14 +15,20 @@ end
 db_config = YAML::load(File.read(RAILS_ROOT + "/config/database.yml"))
  
 if db_config[Rails.env] && db_config[Rails.env]['adapter'] == 'mongodb'
+  Rails.logger.info("Setting up mongo connection")
   mongo = db_config[Rails.env]
-  MongoMapper.connection = Mongo::Connection.new(mongo['hostname'])
+
+  Rails.logger.info("Attempting to log into #{mongo['host']} port #{mongo['port']}")
+
+  MongoMapper.connection = Mongo::Connection.new(mongo['host'],
+                                                 mongo['port'],
+                                                 { :logger => Rails.logger })
+  
   MongoMapper.database = mongo['database']
-  if mongo['username'] && mongo['password']
+  if mongo['username'].present?
     Rails.logger.info("Attempting to pull credentials from env")
     Rails.logger.info("Env says user is #{ENV['MONGOHQ_USER']}")
-    MongoMapper.database.authenticate(ENV['MONGOHQ_USER'],
-                                      ENV['MONGOHQ_PASS'])
+    MongoMapper.database.authenticate(ENV['MONGOHQ_USER'], ENV['MONGOHQ_PASS'])
   end
 end
 
