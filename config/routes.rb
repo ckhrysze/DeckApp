@@ -9,7 +9,7 @@ ActionController::Routing::Routes.draw do |map|
     decks.connect 'decks/:id/mana_curve_chart', :action => 'mana_curve_chart'
   end
 
-  map.connect "login", :controller => :rpx, :action => :index
+  map.login "login", :controller => :rpx, :action => :index
   map.connect "logout", :controller => :rpx, :action => :logout
 
   map.root :controller => "landing"
