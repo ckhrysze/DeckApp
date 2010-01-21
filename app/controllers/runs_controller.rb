@@ -27,7 +27,11 @@ class RunsController < ApplicationController
     deck.save
 
     respond_to do |format|
-      format.json  { render :json => @run.to_json( :include => :card ) }
+      format.json  {
+        # Huh, this seems like a dirty hack to me...
+        card_attrs = Card.new.attributes.keys.reject{ |k| k.chars.first == '_' }
+        render :json => @run.to_json(:methods =>card_attrs)
+      }
     end
   end
 

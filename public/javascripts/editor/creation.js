@@ -39,7 +39,7 @@ function createPendingRow(slotSelector, rowId, count, name) {
 function parseInput(entryText) {
     var countOut = 1
     var nameOut = entryText
-    
+
     var match = entryText.match(/^(\d+|x\d+|\d+x)\s+(\w+.*)$/)
     if (match) {
         countOut = match[1]
@@ -48,13 +48,13 @@ function parseInput(entryText) {
     return {count:countOut, name:nameOut}
 }
 
-function onCardAdded(data, pendingId) {
+function onCardAdded(run, pendingId) {
     $("#" + pendingId).remove()
-    var runId = "run" + data.run.id
+    var runId = "run" + run.id
     if (rowExists(runId)) {
-        appendRow(runId, data)
+        appendRow(runId, run)
     } else {
-        addNewRow(data)
+        addNewRow(run)
     }
     onCardsChanged()
 }
@@ -70,32 +70,31 @@ function rowExists(rowId) {
     }
 }
 
-function appendRow(runId, data) {
-    $("tr#" + runId + " td.run_count").html( data.run.count )
+function appendRow(runId, card) {
+    $("tr#" + runId + " td.run_count").html( card.count )
 }
 
-function addNewRow(data) {
-    var run = data.run
-    var cardtype = data.run.card.cardtype
+function addNewRow(run) {
+    var cardtype = run.cardtype
     if (cardtype == null) cardtype = "unknown"
     debug.info("Card type: " + cardtype)
-    
+
     var blankRowId = "#blank_" + cardtype + "_row"
-    createRow(blankRowId, "run" + run.id, run.count, cardtype, run.card)
+    createRow(blankRowId, "run" + run.id, run.count, cardtype, run)
 }
 
-function createRow(slotSelector, rowId, count, cardtype, card) {
-    if (cardtype == "unknown") createUnknownRow(slotSelector, rowId, count, card)
-    else createMaindeckRow(slotSelector, rowId, count, card)
+function createRow(slotSelector, rowId, count, cardtype, run) {
+    if (cardtype == "unknown") createUnknownRow(slotSelector, rowId, count, run)
+    else createMaindeckRow(slotSelector, rowId, count, run)
 }
 
 function createMaindeckRow(slotSelector, rowId, count, card) {
     var nameDisplay = "<a href=\"http://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=" +
-            card.mtgId +
+            card.mtg_id +
             "\">" +
             card.name +
             "</a>"
-    
+
     $(slotSelector).after(
         "<tr id=\"" + rowId + "\" class=\"dynamic\"><td>" +
         "</td><td>"+ count +
