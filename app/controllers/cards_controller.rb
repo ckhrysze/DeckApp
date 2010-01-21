@@ -10,10 +10,11 @@ class CardsController < ApplicationController
     #end
     db_config = YAML::load(File.read(RAILS_ROOT + "/config/database.yml"))
 
-    Rails.logger.info("Setting up mongo connection")
+    Rails.logger.warn("Setting up mongo connection with config at #{RAILS_ROOT} /config/database.yml")
     mongo = db_config[Rails.env]
 
-    Rails.logger.info("Attempting to log into #{mongo['host']} port #{mongo['port']}")
+    Rails.logger.warn(mongo.inspect)
+    Rails.logger.warn("Attempting to log into #{mongo['host']} port #{mongo['port']}")
     
     MongoMapper.connection = Mongo::Connection.new(mongo['host'],
                                                    mongo['port'],
