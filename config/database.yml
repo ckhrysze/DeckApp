@@ -1,4 +1,4 @@
-blah:
+notdevelopment:
   host: genesis.mongohq.com
   port: 27018
   adapter: mongodb

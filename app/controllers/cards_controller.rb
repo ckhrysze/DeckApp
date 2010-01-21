@@ -2,11 +2,21 @@ class CardsController < ApplicationController
   # GET /cards
   # GET /cards.xml
   def index
-    @cards = Card.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @cards }
+    # @cards = Card.all
+    #
+    #respond_to do |format|
+    #  format.html # index.html.erb
+    #  format.xml  { render :xml => @cards }
+    #end
+    begin
+      raise "DOOM"
+    rescue => e
+      var_hash = {:params => {:a => 1, :b => 2}}
+      Rails.logger.info("about to notify")
+      HoptoadNotifier.notify(:error_class   => "MongoHQ connection failure",
+                             :error_message => "MongoHQ connection failure: #{e.message}",
+                             :request       => var_hash
+                             )
     end
   end
 
