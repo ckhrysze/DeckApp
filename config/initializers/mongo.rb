@@ -1,4 +1,4 @@
-db_config = YAML::load(File.read(RAILS_ROOT + "/config/database.yml"))
+db_config = YAML::load(File.read(RAILS_ROOT + "/config/mongo_database.yml"))
 
 if db_config[Rails.env] && db_config[Rails.env]['adapter'] == 'mongodb'
   Rails.logger.info("Setting up mongo connection")

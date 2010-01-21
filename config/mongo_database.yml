@@ -1,0 +1,25 @@
+notdevelopment:
+  host: genesis.mongohq.com
+  port: 27018
+  adapter: mongodb
+  database: deckapp
+  username: true
+
+development:
+  host: localhost
+  port: 27017
+  adapter: mongodb
+  database: deckapp_dev
+
+test:
+  host: localhost
+  port: 27017
+  adapter: mongodb
+  database: deckapp_test
+
+production:
+  host: genesis.mongohq.com
+  port: 27018
+  adapter: mongodb
+  database: deckapp
+  username: true
