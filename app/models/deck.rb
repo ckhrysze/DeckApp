@@ -58,7 +58,11 @@ class Deck
 
   def colors
     result = maindeck.runs.map do |run|
-      letters = run.cc.downcase.chars.select { |c| /[a-z]/.match(c) }
+      next if run.cc.blank?
+      letters = run.cc.downcase.chars.select { |c|
+        Rails.logger.info("considering letter #{c}")
+        /[a-z]/.match(c)
+      }
       Rails.logger.info("letters for card #{letters}")
       letters
     end    
