@@ -57,22 +57,10 @@ class Deck
   end
 
   def colors
-    result = maindeck.runs.map do |run|
+    maindeck.runs.map do |run|
       next if run.cc.blank?
-      letters = run.cc.downcase.scan(/[a-z]/)
-      Rails.logger.info("letters for card #{letters}")
-      letters
-    end    
-    #.flatten.compact.uniq.to_s.upcase
-
-    Rails.logger.info("letters for deck #{result}")
-    result = result.flatten
-    Rails.logger.info("flattened #{result}")
-    result = result.uniq
-    Rails.logger.info("unique #{result}")
-    result = result.to_s.upcase
-    Rails.logger.info("string upcase #{result}")
-    result
+      run.cc.downcase.scan(/[a-z]/)
+    end.flatten.compact.uniq.to_s.upcase
   end
 
 end
