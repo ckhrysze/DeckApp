@@ -45,8 +45,10 @@ describe Deck do
     it "should work" do
       deck = Factory.create(:deck)
 
+      deck.maindeck.runs << card_with_cc("")
       deck.maindeck.runs << card_with_cc("1G")
       deck.maindeck.runs << card_with_cc("2(G/B)")
+      deck.maindeck.runs << card_with_cc("")
       deck.maindeck.runs << card_with_cc("1GR")
       deck.maindeck.runs << card_with_cc("3RG")
       deck.save

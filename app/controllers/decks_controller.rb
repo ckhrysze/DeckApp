@@ -49,6 +49,13 @@ class DecksController < ApplicationController
     end
   end
 
+  def rename
+    @deck = @user.decks.find(params[:id])
+    new_name = params[:name]
+    @deck.name = new_name
+    @deck.save
+  end
+
   def update
     @deck = @user.decks.find(params[:id])
 
