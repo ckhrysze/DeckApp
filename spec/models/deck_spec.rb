@@ -25,13 +25,14 @@ describe Deck do
   describe "runs delegate to cards" do
     it "should be able to access card attrs through a run" do
       deck = Deck.create!({:name => "run delegation test"})
+
       card = Factory.create(:spell, :cmc => 2)
  
+      deck.maindeck.runs = []
       deck.maindeck.runs << Run.new(:count => 3, :card_id => card.id)
       deck.save
  
       deck = Deck.find(deck.id)
-      #puts deck.maindeck.runs.inspect
       deck.maindeck.runs.first.cmc.should == 2
     end
   end
@@ -43,7 +44,8 @@ describe Deck do
   describe "colors" do
     it "should work" do
       deck = Factory.create(:deck)
-      deck.maindeck.runs << card_with_cc("G")
+
+      deck.maindeck.runs << card_with_cc("1G")
       deck.maindeck.runs << card_with_cc("2(G/B)")
       deck.maindeck.runs << card_with_cc("1GR")
       deck.maindeck.runs << card_with_cc("3RG")

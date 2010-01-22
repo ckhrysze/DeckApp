@@ -45,8 +45,11 @@ class RunsController < ApplicationController
   end
 
   def destroy
-    @run = Run.find(params[:id])
-    @run.destroy
+    deck = Deck.find(params[:deck_id])
+    @run = deck.maindeck.runs.detect { |r| r.id.to_s == params[:id] }
+    puts "about to delete run #{@run.id}"
+    deck.maindeck.runs.delete(@run)
+    deck.save
     head :ok
   end
 end

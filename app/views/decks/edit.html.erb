@@ -8,7 +8,7 @@
 
 <% content_for :content do %>
 <div class="title_block">
-  <span class="title"><%= @deck.name %></span>
+  <span class="title"><%= @deck.name %><a id="edit_deck_name"><%= image_tag 'pencil.png' %></a></span>
 </div>
 
 <div class="yui-gb">
@@ -17,7 +17,7 @@
         <table class="section">
           <tr id="decklist_header">
             <td>Type</td>
-            <td>Count</td>
+            <td>#</td>
             <td>Name</td>
             <td>CC</td>
             <td>CMC</td>

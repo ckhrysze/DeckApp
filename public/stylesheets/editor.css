@@ -1,50 +1,55 @@
 #deck_entry {
-  width: 268px;
-  margin: auto;
+    width: 268px;
+    margin: auto;
 }
 
 #deck_entry table {
-  margin-top: 45px;
+    margin-top: 45px;
 }
 
 #input_entry {
-  text-align: center;
-  margin-top: 15px;
+    text-align: center;
+    margin-top: 15px;
 }
 
 #input_example {
-  width: 100%;
-  text-align: left;
-  color: #999999;
+    width: 100%;
+    text-align: left;
+    color: #999999;
 }
 
 #deck_list table {
-  width: 100%
+    width: 100%
 }
 
 td {
-  text-align: left;
-  padding: 5px;
+    text-align: left;
+    padding: 2px;
+    font-size: 120%;
 }
 
 .title {
-  font-size: 150%;
+    font-size: 200%;
 }
 .title_block {
-  text-align: center;
+    text-align: center;
 }
 
 .delete_run {
-  color: #FF0000;
+    color: #FF0000;
 }
 
 td .delete_run:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 #decklist_header {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 .section {
+}
+
+#edit_deck_name {
+    cursor: pointer;
 }
