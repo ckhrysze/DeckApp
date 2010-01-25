@@ -29,3 +29,8 @@ end
 Factory.define :deck do |d|
   d.name "A Deck"
 end
+
+# Users
+Factory.define :user do |u|
+  u.nick "asdf"
+end

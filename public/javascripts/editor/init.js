@@ -4,7 +4,7 @@ $(document).ready(
     debug.info(document.location.pathname);
     basepath = document.location.pathname.substring(0, document.location.pathname.length-4);
 
-    $("#card_entry").focus();
+    focusEntry();
 
     $("span.delete_run").live(
       "click",
@@ -22,8 +22,20 @@ $(document).ready(
 		   onCardsChanged();
 		 }
 	       });
-	$("#card_entry").focus();
+	focusEntry();
 	e.stopImmediatePropagation();
+      });
+
+    $('#edit_deck_name').click(
+      function() {
+	updateDeckName();
+      }
+    );
+    $("#deck_name_field").keypress(
+      function(e) {
+	if (e.which == 13) {
+	  updateDeckName();
+	}
       });
 
     //tab - 0
@@ -46,10 +58,14 @@ $(document).ready(
 
 var basepath = "";
 var pendingTracker = 0;
+var deckNameEditable = false;
+
+function focusEntry() {
+  $("#card_entry").focus();
+}
 
 function onCardsChanged() {
   loadManaCurveChart();
-  updateTotal();
   var visibility = ($(".unknown").size() > 0 ) ? "visible" : "hidden";
   debug.info("setting unknown header to " + visibility);
   $("#unknown_header").css("visibility", visibility);
@@ -62,6 +78,49 @@ function displayManaCurveChart(chartData) {
   $("#mana_curve").attr("src", chartData.src);
 }
 
-function updateTotal() {
+function updateDeckName() {
+  deckNameEditable = !deckNameEditable;
+  if (deckNameEditable) {
+    makeNameEditable();
+  } else {
+    sendNameUpdate();
+    makeNameUneditable();
+  }
+}
 
+function sendNameUpdate() {
+  var url = basepath + "rename";
+  $.post(
+    url,
+    {name: $("#deck_name_field").val()},
+    onNameUpdated,
+    'json'
+  );
+}
+
+function onNameUpdated(data) {
+  debug.info("name updated result " + data);
+}
+
+function makeNameEditable() {
+  $("#deck_name_show").css("visibility", "hidden");
+  $("#deck_name_show").css("display", "none");
+
+  $("#deck_name_field").val($("#deck_name_show").text());
+
+  $("#deck_name_field").css("visibility", "visible");
+  $("#deck_name_field").css("display", "inline");
+
+  $("#deck_name_field").focus();
+}
+function makeNameUneditable() {
+  $("#deck_name_field").css("visibility", "hidden");
+  $("#deck_name_field").css("display", "none");
+
+  $("#deck_name_show").text($("#deck_name_field").val());
+
+  $("#deck_name_show").css("visibility", "visible");
+  $("#deck_name_show").css("display", "inline");
+
+  focusEntry();
 }

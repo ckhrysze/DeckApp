@@ -51,9 +51,15 @@ class DecksController < ApplicationController
 
   def rename
     @deck = @user.decks.find(params[:id])
+    puts "Old name #{@deck.name}"
+    Rails.logger.info("Old name #{@deck.name}")
     new_name = params[:name]
     @deck.name = new_name
     @deck.save
+    puts "New name #{@deck.name}"
+    Rails.logger.info("New name #{@deck.name}")
+
+    render :json => @deck.to_json
   end
 
   def update

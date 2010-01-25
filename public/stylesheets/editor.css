@@ -8,18 +8,23 @@
 }
 
 #input_entry {
-    text-align: center;
-    margin-top: 15px;
-}
-
-#input_example {
-    width: 100%;
+    width: 280px;
+    margin: 15px auto;
     text-align: left;
     color: #999999;
 }
 
 #deck_list table {
     width: 100%
+}
+
+#pending_cards {
+    margin-top: 50px;
+}
+
+.center_col {
+    width: 280px;
+    margin: 35px auto;
 }
 
 td {
@@ -45,9 +50,6 @@ td .delete_run:hover {
 
 #decklist_header {
     font-weight: bold;
-}
-
-.section {
 }
 
 #edit_deck_name {

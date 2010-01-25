@@ -7,8 +7,10 @@
 <% cols = 6 %>
 
 <% content_for :content do %>
-<div class="title_block">
-  <span class="title"><%= @deck.name %><a id="edit_deck_name"><%= image_tag 'pencil.png' %></a></span>
+<div id="deck_name_container" class="title_block">
+  <span class="title" id="deck_name_show"><%= @deck.name %></span>
+  <input id="deck_name_field" style="display: none;" />
+  <a id="edit_deck_name"><%= image_tag 'pencil.png' %></a>
 </div>
 
 <div class="yui-gb">
@@ -57,9 +59,6 @@
     <div id="input_entry">
       <input id="card_entry" size="34" />
       <button id="add_card_button" name="add_card">+</button>
-    </div>
-
-    <div id="input_example">
       <p><span style="font-weight: bold">examples:</span></p>
       <ul style="margin-left: 18px">
         <li>island</li>
@@ -68,14 +67,15 @@
       </ul>
     </div>
 
-    <table class="section">
+
+    <table id="pending_cards" class="center_col">
       <tr id="pending_header">
         <td colspan="<%=cols%>">Pending</td>
       </tr>
       <tr id="blank_pending_row" />
     </table>
 
-    <table class="section">
+    <table class="center_col">
       <tr id="unknown_header" style="visibility: hidden">
         <td colspan="<%=cols%>">Couldn't resolve, you may as well delete these</td>
       </tr>
