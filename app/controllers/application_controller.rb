@@ -11,6 +11,8 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
 
+  private
+
   def require_login
     if session[:user].nil?
       @user = User.find_by_nick("default")

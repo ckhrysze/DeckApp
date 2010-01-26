@@ -8,6 +8,7 @@
 <% content_for :content do %>
   <div class="yui-g">
     <div class="yui-u first">
+
       <div id="deck_list">
         <table class="section">
           <tr id="decklist_header">
@@ -49,6 +50,7 @@
         </table>
       </div>
 
+      <% if @is_owner %>
       <br /><br />
 
       <%= link_to 'edit deck', edit_deck_url(@deck) %>
@@ -67,7 +69,7 @@
 	  <li><a href=""><%= @deck.name %>.dec</a></li>
 	</ul>
       </div>
-
+      <% end %>
     </div>
 
     <div class="yui-u">

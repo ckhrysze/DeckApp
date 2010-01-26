@@ -1,9 +1,9 @@
 class DecksController < ApplicationController
 
-  before_filter :require_login
+  before_filter :require_login, :except => :show
 
   def mana_curve_chart
-    @deck = Deck.find(params[:id])
+    @deck = @user.decks.find(params[:id])
     render :json => {:src => @deck.mana_curve_chart, :alt => "mana curve chart"}.to_json
   end
 
@@ -17,7 +17,8 @@ class DecksController < ApplicationController
   end
 
   def show
-    @deck = @user.decks.find(params[:id])
+    @deck = Deck.find(params[:id])
+    @is_owner = @user && @deck.user_id == @user.id
 
     respond_to do |format|
       format.html # show.html.erb
@@ -26,8 +27,8 @@ class DecksController < ApplicationController
   end
 
   def new
-    @deck = @user.decks.build
-    #render :edit
+    @deck = @user.decks.create(:name => "New Deck")
+    render :edit
   end
 
   def edit
@@ -51,13 +52,10 @@ class DecksController < ApplicationController
 
   def rename
     @deck = @user.decks.find(params[:id])
-    puts "Old name #{@deck.name}"
-    Rails.logger.info("Old name #{@deck.name}")
+
     new_name = params[:name]
     @deck.name = new_name
     @deck.save
-    puts "New name #{@deck.name}"
-    Rails.logger.info("New name #{@deck.name}")
 
     render :json => @deck.to_json
   end
@@ -86,4 +84,5 @@ class DecksController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
 end

@@ -10,14 +10,20 @@ html, body {
     border-bottom: 1px solid black;
 }
 
+#bd {
+    padding-top: 15px;
+}
+
 #logo {
     clear: both;
 }
 
 #nav {
     float: left;
-    margin-top: -18px;
+    margin-top: -24px;
+    margin-left: 5px;
     width: 300px;
+    text-align: left;
 }
 
 #nav li {
@@ -29,6 +35,8 @@ html, body {
 #nav li, #nav a {
     color: #ffffff; /* #62a3db; */
     background-color: #3c2716;
+    text-decoration: none;
+    font-size: 120%;
 }
 
 #login_container {
@@ -42,8 +50,8 @@ html, body {
 
 .consume_height {
     background-color: #FFFFCC;
-    padding-bottom: 101em;     /* X + padding-bottom */
-    margin-bottom: -100em;     /* X */
+    padding-bottom: 51em;     /* X + padding-bottom */
+    margin-bottom: -50em;     /* X */
 }
 
 p {
