@@ -28,7 +28,7 @@ class DecksController < ApplicationController
 
   def new
     @deck = @user.decks.create(:name => "New Deck")
-    render :edit
+    redirect_to edit_deck_path(@deck)
   end
 
   def edit
