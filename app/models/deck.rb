@@ -39,6 +39,7 @@ class Deck
 
     dataset = {}
     maindeck.nonlands.each do |r|
+      next if r.cmc.nil?
       if dataset.has_key?(r.cmc)
         dataset[r.cmc] += r.count 
       else

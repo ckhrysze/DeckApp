@@ -1,6 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Deck do
+
   describe "cmc_values" do
     it "should count cmc for maindeck non lands" do
       deck = Deck.create!({:name => "Google Chart Test"})
@@ -16,6 +17,20 @@ describe Deck do
 
       deck.cmc_values.should == [8,2,4,0,3]
     end
+
+    it "should filter bad runs" do
+      deck = Deck.create!({:name => "Google Chart Test"})
+
+      deck.maindeck.runs = []
+      deck.maindeck << make_run(:land, 20)
+      deck.maindeck << make_run(:creature, 4, 1)
+      deck.maindeck << make_run(:spell, 4, 2)
+      deck.maindeck << Run.new(:count => 3, :card => Factory.create(:card, :cmc => nil))
+      deck.save
+
+      deck.cmc_values.should == [4,4]
+    end
+
   end
 
   def make_run(card_type_sym, count = 1, cmc = 0)
