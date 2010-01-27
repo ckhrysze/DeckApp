@@ -31,7 +31,7 @@ class RpxController < ApplicationController
 
       # implement your own do_success method which signs the user in
       # to your website
-      user = User.find(:one, :conditions => {'identifiers.ident' => unique_identifier})
+      user = User.find(:first, :conditions => {'identifiers.ident' => unique_identifier})
       if user.nil?
         logger.info("User was not found, creating a new one")
         user = User.new(:email => email, :nick => nickname)
