@@ -1,7 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :cards
 
-  map.resources :decks, :member => { :rename => :post } do |decks|
+  map.resources :decks, :member => { :count => :get, :rename => :post } do |decks|
     decks.resources :runs
   end
 

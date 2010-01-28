@@ -4,7 +4,7 @@
     <%= stylesheet_link_tag 'editor', 'deck' %>
 <% end %>
 
-<% cols = 6 %>
+<% cols = 5 %>
 
 <% content_for :content do %>
 <div id="deck_name_container" class="title_block">
@@ -16,40 +16,40 @@
 <div class="yui-gb">
   <div class="yui-u first">
       <div id="deck_list">
-        <table class="section">
+        <table>
           <tr id="decklist_header">
             <td>Type</td>
             <td>#</td>
             <td>Name</td>
             <td>CC</td>
             <td>CMC</td>
-            <td>&nbsp;</td>
           </tr>
 
           <tr id="land_header" class="hrule">
             <td>Lands</td>
           </tr>
-          <%= render :partial => "run_rows",
+          <%= render :partial => "edit_run",
                 :locals => {:runs => @deck.maindeck.lands, :classes => ['maindeck'] } %>
           <tr id="blank_land_row" />
 
           <tr id="creature_header" class="hrule">
             <td>Creatures</td>
           </tr>
-          <%= render :partial => "run_rows",
+          <%= render :partial => "edit_run",
                 :locals => {:runs => @deck.maindeck.creatures, :classes => ['maindeck', 'nonland'] } %>
           <tr id="blank_creature_row" />
 
           <tr id="spell_header" class="hrule">
             <td>Spells</td>
           </tr>
-          <%= render :partial => "run_rows",
+          <%= render :partial => "edit_run",
                 :locals => {:runs => @deck.maindeck.spells, :classes => ['maindeck', 'nonland'] } %>
           <tr id="blank_spell_row" />
 
           <tr class="hrule">
               <td>Total</td>
-              <td class="total_cards"><%= @deck.maindeck.count %></td>
+              <td id="maindeck_count" class="total_cards"><%= @deck.maindeck.count %></td>
+	      <td colspan="<%= cols-2 %>">&nbsp;</td>
           </tr>
         </table>
       </div>
@@ -85,7 +85,7 @@
   </div>
 
   <div class="yui-u">
-    <div id="deck_stats" class="section">
+    <div id="deck_stats">
       <img id="mana_curve" alt="mana curve chart" />
     </div>
   </div>

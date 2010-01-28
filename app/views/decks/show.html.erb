@@ -4,16 +4,17 @@
     <%= stylesheet_link_tag 'reset-fonts', 'layout', 'deck' %>
 <% end %>
 
+<% cols = 6 %>
 
 <% content_for :content do %>
   <div class="yui-g">
     <div class="yui-u first">
 
       <div id="deck_list">
-        <table class="section">
+        <table>
           <tr id="decklist_header">
             <td>Type</td>
-            <td>Count</td>
+            <td>#</td>
             <td>Name</td>
             <td>CC</td>
             <td>CMC</td>
@@ -21,24 +22,24 @@
           </tr>
 
           <tr id="land_header" class="hrule">
-            <td>Lands</td>
+            <td colspan="<%= cols %>">Lands</td>
           </tr>
-          <%= render :partial => "run_rows",
+          <%= render :partial => "show_run",
                      :locals => {:runs => @deck.maindeck.lands, :classes => ['maindeck'] } %>
           <tr id="blank_land_row" />
 
           <tr id="creature_header" class="hrule">
-            <td>Creatures</td>
+            <td colspan="<%= cols %>">Creatures</td>
           </tr>
-          <%= render :partial => "run_rows",
+          <%= render :partial => "show_run",
                      :locals => {:runs => @deck.maindeck.creatures,
 	                         :classes => ['maindeck', 'nonland'] } %>
           <tr id="blank_creature_row" />
 
           <tr id="spell_header" class="hrule">
-            <td>Spells</td>
+            <td colspan="<%= cols %>">Spells</td>
           </tr>
-          <%= render :partial => "run_rows",
+          <%= render :partial => "show_run",
                      :locals => {:runs => @deck.maindeck.spells,
 	                         :classes => ['maindeck', 'nonland'] } %>
           <tr id="blank_spell_row" />
@@ -46,6 +47,7 @@
           <tr class="hrule">
             <td>Total</td>
             <td class="total_cards"><%= @deck.maindeck.count %></td>
+	    <td colspan="<%= cols-2 %>">&nbsp;</td>
           </tr>
         </table>
       </div>

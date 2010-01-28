@@ -66,6 +66,7 @@ function focusEntry() {
 
 function onCardsChanged() {
   loadManaCurveChart();
+  requestDeckCount();
   var visibility = ($(".unknown").size() > 0 ) ? "visible" : "hidden";
   debug.info("setting unknown header to " + visibility);
   $("#unknown_header").css("visibility", visibility);
@@ -76,6 +77,14 @@ function loadManaCurveChart() {
 }
 function displayManaCurveChart(chartData) {
   $("#mana_curve").attr("src", chartData.src);
+}
+
+function requestDeckCount() {
+  $.getJSON(basepath + "count", updateDeckCount);
+}
+function updateDeckCount(deckCount) {
+  debug.info("Deck count response is " + deckCount);
+  $("#maindeck_count").text(deckCount);
 }
 
 function updateDeckName() {

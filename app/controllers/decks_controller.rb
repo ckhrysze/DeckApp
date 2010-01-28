@@ -26,6 +26,12 @@ class DecksController < ApplicationController
     end
   end
 
+  def count
+    @deck = Deck.find(params[:id])
+    render :json => @deck.maindeck.count.to_json
+  end
+
+
   def new
     @deck = @user.decks.create(:name => "New Deck")
     redirect_to edit_deck_path(@deck)
