@@ -24,7 +24,6 @@ Spec::Runner.configure do |config|
   # Drop all columns after each test case.
   config.append_after(:each) do
     MongoMapper.database.collections.each do |coll|
-      #puts "About to delete from collection #{coll}"
       coll.remove
     end
   end

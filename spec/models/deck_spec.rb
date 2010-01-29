@@ -71,4 +71,15 @@ describe Deck do
       deck.colors.chars.to_a.sort.should == "RGB".chars.to_a.sort
     end
   end
+
+  describe "count" do
+    it "should count maindeck" do
+      deck = Deck.create(:name => "Simple")
+      deck.count.should == 0
+    end
+  end
+
+  describe "latest" do
+
+  end
 end

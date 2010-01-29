@@ -15,5 +15,6 @@ describe DecksController do
       #post :rename, :deck_id => deck.id
       #Deck.find(deck.id).name.should == new_name
     end
+
   end
 end

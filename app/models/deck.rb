@@ -2,12 +2,18 @@ class Deck
   include MongoMapper::Document
 
   key :name, String
-  key :maindeck, Pile, :default => Pile.new(:name => 'maindeck')
-  key :sideboard, Pile, :default => Pile.new(:name => 'sideboard')
+  key :maindeck, Pile
+  key :sideboard, Pile
   timestamps!
 
   belongs_to :user
 
+  before_save :init_piles
+
+  def init_piles
+    @maindeck ||= Pile.new(:name => 'maindeck')
+    @sideboard ||= Pile.new(:name => 'sideboard')    
+  end
 
   def mana_curve_chart
     google_chart_base_url = "http://chart.apis.google.com/chart?"
@@ -62,6 +68,10 @@ class Deck
       next if run.cc.blank?
       run.cc.downcase.scan(/[a-z]/)
     end.flatten.compact.uniq.to_s.upcase
+  end
+
+  def count
+    maindeck.count
   end
 
 end

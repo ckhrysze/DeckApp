@@ -36,18 +36,6 @@ function createPendingRow(slotSelector, rowId, count, name) {
   );
 }
 
-function parseInput(entryText) {
-  var countOut = 1;
-  var nameOut = entryText;
-
-  var match = entryText.match(/^(\d+|x\d+|\d+x)\s+(\w+.*)$/);
-  if (match) {
-    countOut = match[1];
-    nameOut = match[2];
-  }
-  return {count:countOut, name:nameOut};
-}
-
 function onCardAdded(run, pendingId) {
   $("#" + pendingId).remove();
   var runId = "run" + run.id;

@@ -28,7 +28,7 @@ class DecksController < ApplicationController
 
   def count
     @deck = Deck.find(params[:id])
-    render :json => @deck.maindeck.count.to_json
+    render :json => @deck.count.to_json
   end
 
 
