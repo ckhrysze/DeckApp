@@ -74,12 +74,39 @@ describe Deck do
 
   describe "count" do
     it "should count maindeck" do
-      deck = Deck.create(:name => "Simple")
+      deck = Factory.create(:deck)
       deck.count.should == 0
     end
   end
 
-  describe "latest" do
+  describe "recently_updated" do
+    it "should only consider decks with 60+ cards" do
+      bad = Factory.create(:deck)
+      good = Factory.create(:full_deck)
 
+      #Deck.recently_updated.size.should == 1
+    end
+
+    it "should limit to 5 decks" do
+      7.times { Factory.create(:full_deck) }
+
+      Deck.recently_updated.size.should == 5
+    end
+
+    it "should order most to least recent" do
+      first, second, third = 3.times.map { Factory.create(:full_deck) }
+
+      second.updated_at = Time.local(2010, 1, 15)
+      second.save
+
+      first.updated_at = Time.local(2010, 1, 20)
+      first.save
+
+      first.updated_at = Time.local(2010, 1, 5)
+      first.save
+
+      Deck.recently_updated.map(&:id).should == [first, second, third].map(&:id)
+    end
   end
+
 end

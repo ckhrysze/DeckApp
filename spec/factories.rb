@@ -19,16 +19,30 @@ Factory.define :spell, :parent => :card do |c|
   c.cardtype "spell"
 end
 
-# Runs
+
+# Decks
 Factory.define :run do |r|
   r.count 0
   r.card Factory.create(:card)
 end
 
-# Decks
 Factory.define :deck do |d|
   d.name "A Deck"
 end
+
+Factory.define :full_deck, :parent => :deck do |d|
+  d.name "A Deck"
+  d.association :maindeck, :factory => :full_pile
+end
+
+Factory.define :pile do |p|
+  p.runs []
+end
+
+Factory.define :full_pile, :parent => :pile do |p|
+  p.runs [Factory(:run, :count => 60)]
+end
+
 
 # Users
 Factory.define :user do |u|

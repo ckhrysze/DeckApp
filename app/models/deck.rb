@@ -74,4 +74,44 @@ class Deck
     maindeck.count
   end
 
+  def self.recently_updated
+
+    mapReduce = OrderedHash.new
+    mapReduce['mapreduce'] = 'decks'
+    mapReduce['map'] = <<-JS
+      function() {
+        var deck = this;
+        if (this.maindeck.runs) {
+          this.maindeck.runs.forEach(function(run) {
+            emit(deck._id, {card_count : run.count, updated_at : deck.updated_at });
+          });
+        }
+      }
+    JS
+    mapReduce['reduce'] = <<-JS
+      function(k, vals) {
+        var total = 0;
+        for (var i=0; i<vals.length; i++) {
+            total += vals[i].card_count;
+        }
+        return {card_count: total, updated_at: vals[0].updated_at};
+      }
+    JS
+
+    a = MongoMapper.database.command(mapReduce)
+    res = MongoMapper.database.collection(a["result"]).find().to_a
+    res = res.sort_by { |x| x["value"]["updated_at"] }[0..4]
+    find(res.map { |x| x["_id"] }, :order => "updated_at DSC")
+
+    # :all,
+    # :conditions => "card_count >= 60",
+    # :order => "updated_at",
+    # :limit => "5"
+    # ).map(&:_id)
+
+    #Deck.all.select { |d| d.count >= 60 }.sort_by { |d|
+    #  d.updated_at
+    #}[0..4]
+  end
+
 end
